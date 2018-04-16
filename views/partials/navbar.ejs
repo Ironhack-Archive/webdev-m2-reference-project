@@ -1,0 +1,25 @@
+<div class="navbar">
+  <!-- Logo -->
+  <a class="logo-link" href="/">
+    <div class="navbar-logo">
+      <h1 class="main-title">IRON</h1>
+      <img class="ih-logo"src="/images/logo.png" alt="">
+      <h1 class="main-title">QUOTES</h1>
+    </div>
+  </a>
+  <a href="/students/random" class="navbar-item navbar-link">Random!</a>
+  <!-- Right Navigation -->
+  <div class="navbar-right">
+    <a href="/students" class="navbar-item navbar-link">List</a>
+    <a href="/students/new" class="navbar-item navbar-link">Add</a>
+    <% if (currentUser) { %>
+      <form method="POST" action="/auth/logout">
+        <div class="field submit">
+          <button type="submit" class="btn btn-submit">Log Out</button>
+        </div>
+      </form>
+    <% } else { %>
+      <a href="/auth/login" class="navbar-item navbar-link">Login</a>
+    <% }; %>
+  </div>
+</div>
