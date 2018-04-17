@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Student = require('../models/student');
+const Student = require('../models/quote');
 var faker = require('faker');
 mongoose.connect('mongodb://127.0.0.1:27017/iron-dixit');
 

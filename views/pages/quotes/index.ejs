@@ -1,6 +1,6 @@
 <div class="cards-container">
   <div class="filter-container">
-    <form method="GET" action="/students">
+    <form method="GET" action="/quotes">
       <select name="bootcamp">
         <option value="bootcamp" selected>Bootcamp</option>
         <option value="WebDev">WebDev</option>
@@ -44,26 +44,26 @@
     </form>
   </div>
   <div class="row">
-    <% students.forEach((student) => { %>
+    <% quotes.forEach((quote) => { %>
       <div class="col-xs-12 col-sm-4 row-spacing">
         <div class="student-card">
           <div class="student-card-top">
-            <img src="<%= student.photo %>" alt="">
-            <h3 class="title"><%= student.name %></h3>
-            <p class="occupation"><%= student.occupation %></p>
-            <form method="POST" action="/students/<%= student._id %>/delete">
+            <!-- <img src="<%= quote.photo %>" alt=""> -->
+            <h3 class="title"><%= quote.name %></h3>
+            <p class="occupation"><%= quote.batch %></p>
+            <form method="POST" action="/quotes/<%= quote._id %>/delete">
               <button class="btn btn-danger">
                 <i class="far fa-trash-alt"></i>
               </button>
             </form>
-            <form method="GET" action="/students/<%= student._id %>/edit">
+            <form method="GET" action="/quotes/<%= quote._id %>/edit">
               <button class="btn btn-success">
                 <i class="fas fa-pencil-alt"></i>
               </button>
             </form>
           </div>
-          <p class="phrase"><em>"<%= student.catchPhrase %>"</em></p>
-          <a class="link" href="/students/<%= student._id%>"></a>
+          <p class="phrase"><em>"<%= quote.quote %>"</em></p>
+          <a class="link" href="/quotes/<%= quote._id%>"></a>
         </div>
       </div>
     <% }) %>

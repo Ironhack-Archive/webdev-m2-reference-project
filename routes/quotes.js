@@ -2,8 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const Student = require('../models/student');
-const faker = require('faker');
+const Quote = require('../models/quote');
 
 // ---------- Index ---------- //
 router.get('/', (req, res, next) => {
@@ -15,93 +14,108 @@ router.get('/', (req, res, next) => {
     // const filterString = bootcamp + month + year + city;
     // console.log(filterString);
   } else {
-    Student.find({})
+    Quote.find({})
       .then((result) => {
-        const data = { students: result };
-        res.render('pages/students/index', data);
-      });
+        const data = { quotes: result };
+        res.render('pages/quotes/index', data);
+      })
+      .catch(next);
   };
 });
 
 // ---------- Random ---------- //
 router.get('/random', (req, res, next) => {
-  Student.find({})
+  Quote.find({})
     .then((result) => {
-      console.log(result);
       const rand = result[Math.floor(Math.random() * result.length)];
-      const data = { student: rand };
-      res.render('pages/students/show', data);
-    });
+      const data = { quote: rand };
+      res.render('pages/quotes/show', data);
+    })
+    .catch(next);
 });
 
 // ---------- New ---------- //
 router.get('/new', (req, res, next) => {
-  if (req.session.user) {
+  if (!req.session.user) {
     return res.redirect('auth/login');
   };
-  res.render('pages/students/new');
+  res.render('pages/quotes/new');
 });
 
 // ---------- Show ---------- //
 router.get('/:id', (req, res, next) => {
-  Student.findOne({_id: req.params.id})
+  Quote.findOne({_id: req.params.id})
     .then((result) => {
-      const data = { student: result };
-      res.render('pages/students/show', data);
-    });
+      if (!result) {
+        next();
+        return;
+      }
+      const data = { quote: result };
+      res.render('pages/quotes/show', data);
+    })
+    .catch(next);
 });
 
 // ---------- Create ---------- //
 router.post('/', (req, res, next) => {
-  if (req.session.user) {
+  if (!req.session.user) {
     return res.redirect('auth/login');
   };
 
-  const student = new Student(req.body);
-  student.photo = faker.image.avatar();
-  student.save()
+  const quote = new Quote(req.body);
+  quote.user = req.session.user;
+  quote.save()
     .then(() => {
-      res.redirect(`/students/${student._id}`);
-    });
+      res.redirect(`/quotes/${quote._id}`);
+    })
+    .catch(next);
 });
 
 // ---------- Edit ---------- //
 router.get('/:id/edit', (req, res, next) => {
-  if (req.session.user) {
-    return res.redirect('auth/login');
+  if (!req.session.user) {
+    return res.redirect('/auth/login');
   };
-  Student.findOne({ _id: req.params.id })
+  Quote.findOne({ _id: req.params.id })
     .then((result) => {
-      const data = { student: result };
-      res.render('pages/students/edit', data);
-    });
+      if (!result) {
+        next();
+        return;
+      }
+      const data = { quote: result };
+      res.render('pages/quotes/edit', data);
+    })
+    .catch(next);
 });
 
 // ---------- Update --------- //
 router.post('/:id', (req, res, next) => {
-  if (req.session.user) {
-    return res.redirect('auth/login');
+  if (!req.session.user) {
+    return res.redirect('/auth/login');
   };
   const data = {
     name: req.body.name,
-    occupation: req.body.occupation,
-    catchPhrase: req.body.catchPhrase
+    photo: req.body.photo,
+    quote: req.body.quote,
+    user: req.body.user
   };
-  Student.update({ _id: req.params.id }, data)
+  Quote.update({ _id: req.params.id }, data)
     .then(() => {
-      res.redirect(`/students/${req.params.id}`);
-    });
+      res.redirect(`/quotes/${req.params.id}`);
+    })
+    .catch(next);
 });
 
 // ---------- Delete ---------- //
 router.post('/:id/delete', (req, res, next) => {
-  if (req.session.user) {
-    return res.redirect('auth/login');
+  if (!req.session.user) {
+    return res.redirect('/auth/login');
   };
-  Student.remove({ _id: req.params.id })
+  Quote.remove({ _id: req.params.id })
     .then(() => {
-      res.redirect(`/students`);
-    });
+      res.redirect(`/quotes`);
+    })
+    .catch(next);
 });
 
 module.exports = router;

@@ -110,6 +110,22 @@ p {
   width: 100px;
 }
 
+.no-btn {
+  border: none;
+  background: initial;
+  color: #616668;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0 20px;
+}
+
+.no-btn:hover {
+  color: #3D7DB1;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
 /* ---------- NAVBAR ---------- */
 
 .navbar {
@@ -151,6 +167,15 @@ p {
   font-size: 14px;
   text-decoration: none;
 }
+
+.navbar-or {
+  color: #616668;
+  font-size: 14px;
+  padding: 0 20px;
+  text-decoration: none;
+  cursor: initial;
+}
+
 .navbar-link:hover {
   color: #3D7DB1;
   text-decoration: none;
