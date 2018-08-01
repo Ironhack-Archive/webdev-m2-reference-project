@@ -6,21 +6,12 @@ const Quote = require('../models/quote');
 
 // ---------- Index ---------- //
 router.get('/', (req, res, next) => {
-  if (req.query.bootcamp || req.query.month || req.query.year || req.query.city) {
-    // const bootcamp = req.query.bootcamp !== 'bootcamp' ? req.query.bootcamp + ' ' : '';
-    // const month = req.query.month !== 'month' ? req.query.month + ' ' : '';
-    // const year = req.query.year !== 'year' ? req.query.year + ' ' : '';
-    // const city = req.query.city !== 'city' ? req.query.city : '';
-    // const filterString = bootcamp + month + year + city;
-    // console.log(filterString);
-  } else {
-    Quote.find({})
-      .then((result) => {
-        const data = { quotes: result };
-        res.render('pages/quotes/index', data);
-      })
-      .catch(next);
-  };
+  Quote.find({}).populate('user')
+    .then((result) => {
+      const data = { quotes: result };
+      res.render('pages/quotes/index', data);
+    })
+    .catch(next);
 });
 
 // ---------- Random ---------- //

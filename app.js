@@ -58,6 +58,9 @@ app.use(flash());
 app.use('/', index);
 app.use('/quotes', quotes);
 app.use('/auth', auth);
+app.get('/test', (req, res, next) => {
+  res.json({ foo: 'bar' });
+});
 
 // ---------- 404 AND ERROR HANDLER ----------
 app.use((req, res, next) => {

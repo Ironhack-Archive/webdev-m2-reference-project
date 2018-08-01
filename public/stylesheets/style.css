@@ -171,13 +171,30 @@ p {
 .navbar-or {
   color: #616668;
   font-size: 14px;
-  padding: 0 20px;
+  padding: 0px;
   text-decoration: none;
   cursor: initial;
+
 }
 
 .navbar-link:hover {
   color: #3D7DB1;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.navbar-btn {
+  background-color: #3D7DB1;
+  margin: 0 20px;
+  color: white;
+  border-radius: 10px;
+  width: 90px;
+  text-align: center;
+}
+
+.navbar-btn:hover {
+  color: white;
+  background-color: rgb(22, 97, 158);
   text-decoration: none;
   transition: all 0.3s ease;
 }
@@ -254,7 +271,7 @@ p {
   padding: 0 10px;
   color: black !important;
   position: absolute;
-  top: 140px;
+  top: 20px;
   text-align: center;
 }
 
@@ -265,7 +282,7 @@ p {
   padding: 0 10px;
   color: black !important;
   position: absolute;
-  top: 170px;
+  top: 60px;
   text-align: center;
 }
 
@@ -273,26 +290,50 @@ p {
   font-size: 20px;
   font-weight: 100;
   width: 300px;
-  padding: 0 10px;
+  padding: 0 20px;
   color: black !important;
   position: absolute;
-  bottom: 100px;
+  bottom: 150px;
   left: 0px;
   text-align: center;
 }
 
 .student-card-top .btn-danger {
   position: absolute;
-  bottom: 25px;
-  right: 50px;
-  z-index: 40;
+  bottom: 20px;
+  right: 20px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  height: 25px;
+  line-height: 0px;
+  padding: 1px 15px;
+  font-size: 10px;
+  z-index: 31;
 }
 
 .student-card-top .btn-success {
   position: absolute;
-  bottom: 25px;
-  left: 50px;
+  bottom: 20px;
+  right: 60px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  height: 25px;
+  line-height: 0px;
+  padding: 1px 15px;
+  font-size: 10px;
+  z-index: 31;
+}
+
+.student-card .owner {
+  position: absolute;
+  bottom: 20px;
+  left: 0px;
   z-index: 40;
+  width: 100%;
+  text-align: center;
+  color: #616668;
+  font-size: 14px;
+  font-weight: 100;
 }
 
 .student-card .link {
@@ -304,6 +345,7 @@ p {
   text-decoration: none;
   z-index: 30;
 }
+
 
 .student-card .link:hover {
   cursor: pointer;
