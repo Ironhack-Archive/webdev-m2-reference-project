@@ -2,59 +2,56 @@
 
 ## User Stories
 
-  ### **Error Epic:**
-  **404:** As an anon/user I can see a 404 page if I try to reach a page that does not exist so that I maybe a mistake :(.
+  ### Error Epic:
+    404: "As an anon/user I can see a 404 page if I try to reach a page that does not exist so that I maybe a mistake :(."
+    
+    500: "As an anon/user I can see a 500 page if there is something wrong with the server so that I know that the code is shit :D."
   
-  **500:** As an anon/user I can see a 500 page if there is something wrong with the server so that I know that the code is shit :D.
+  ### Auth Epic:
+    Signup: "As an anon I can sign up in the platform so that I can start discovering awesome quotes."
+    
+    Login: "As a user I can login to the platform so that I can start discovering awesome quotes."
+    
+    Logout: "As a user I can logout from the platform so no one else can use my account."
   
-  ### **Auth Epic:**
-  **Signup:** As an anon I can sign up in the platform so that I can start discovering awesome quotes.
-  
-  **Login:** As a user I can login to the platform so that I can start discovering awesome quotes.
-  
-  **Logout:** As a user I can logout from the platform so no one else can use my account.
-  
-  ### **Profile Epic:**
-  **Profile:** As a user I would like to see my profile so I can manage my preferences and see my favorites quotes and my groups.
-  
-  ### **Quote Epic:**
-  **List:** As a user I can list quotes from public groups so i can discover amazing quotes.
+  ### Quote Epic:
+    List: "As a user I can list quotes from public groups so i can discover amazing quotes."
 
-  **Create:** As a user I can add a quote so i can share it with the rest of the comunity.
+    Create: "As a user I can add a quote so i can share it with the rest of the comunity."
 
-  **Show:** As a user I can show a specific quote so i can see the details of the quote.
+    Show: "As a user I can show a specific quote so i can see the details of the quote."
 
-  **Update:** As a user I can update a quote so i can change it details.
+    Update: "As a user I can update a quote so i can change it details."
 
-  **Delete:** As a user I can delete a quote so i can erase it from the face of the earth.
+    Delete: "As a user I can delete a quote so i can erase it from the face of the earth."
 
-  ### **Group Epic:**
-  **List:** As a user I can list group that are not private so i can
+    like: "As a user I can mar a quote in favorite so i can see it in my profile."
 
-  **Create:** As a user I can group so i can see all the quotes specific to that group.
-
-  **Show:** As a user I can show a specific group so i can 
-
-  **Update:** As a user i can update a group so i can change it prefenrences
-
-  **Invite:** As a user i can invite other users to the private group so i can start sharing quotes with them.
-
-  **Join:** As a user I can join a public group so i can start sharing quotes with others members.
+    Comment: "As a user i can make a comment so that i can share mis thoughts about that quote with the community"
 
 ---
-## Backlog
+## Backlog:
 
-  ### **Quote Epic:**
-  **Favorite:** As a user I can mar a quote in favorite so i can see it in my profile.
+  ### Profile Epic:
+  Profile: "As a user I would like to see my profile so I can manage my preferences and see my favorites quotes and my groups."
 
-  **Report:** As a user I can report a quote so the owner and the group manager can realize that is offensive in some way.
+  ### Group Epic:
+    List: "As a user I can list group that are not private so i can"
 
-  **Random:** As a user I can show a random quote from public groups so i can discover amazing quotes.
+    Create: "As a user I can group so i can see all the quotes specific to that group."
+
+    Show: "As a user I can show a specific group so i can "
+
+    Update: "As a user i can update a group so i can change it prefenrences"
+
+    Invite: "As a user i can invite other users to the private group so i can start sharing quotes with them."
+
+    Join: "As a user I can join a public group so i can start sharing quotes with others members."
 
 ---
 ## Models
 
-  **User model**
+  ### User model:
 
   ```
   User {
@@ -75,49 +72,58 @@
       type: string,
       required: true
     }
+  }, {
+  timestamps: true
   }
   ```
 
-  **Quote Model**
+  ### Quote model:
 
   ```
   Quote {
     owner: {
       type: ObjectId,
-      ref: 'User'
+      ref: 'User',
+      required: true
     },
-    quote: {
-      type: String
-    }
+    body: {
+      type: String,
+      required: true
+    },
+    reviews: [
+      Review.schema
+    ],
+    likes: [
+      Like.schema
+    ],
+    isActive: {
+      type: Boolean,
+      default: true
+    },
+    
+  }, {
+  timestamps: true
   }
-  ```
+ ```
 
-  **Group Model**
-
-  Quote model
+  ### Comment Sub-Schema  
 
   ```
-  Group {
+  Comment {
+    content: {
+      type: String,
+      required: true
+    },
     owner: {
       type: ObjectId,
-      ref: 'User'
-    },
-    members: [{
-      type: ObjectId,
-      ref: 'User'
-    }],
-    isPrivate: {
-      type: boolean
-    },
-    isActive: {
-      type: boolean
-    },
-    quotes: [{
-      type: ObjectId,
-      ref: 'Quote'
-    }]
+      ref: 'User',
+      required: true
+    }
+  }, {
+  timestamps: true
   }
   ```
+
 
 ---
 ## Routes
@@ -148,25 +154,18 @@ Method   | Route                       | Whats does?                            
 
 ---
 
-## PROFILE
-Method   | Route                       | Whats does?                              |
-|:-------|:----------------------------|:-----------------------------------------|
-|get     |/profile                     | shows the profile of the current user    |
-
----
-
 ## QUOTES
 Method   | Route                       | Whats does?                              |
 |:-------|:----------------------------|:-----------------------------------------|
-|get     |/quotes                      | shows the list quotes from public groups |
-|get     |/events/create               | shows the event creation form            |
-|post    |/events                      | creates a new event                      |
-|get     |/events/:id                  | shows the events detail page             |
-|get     |/events/:id/edit             | shows the edit event form                |
-|post    |/events/:id/                 | updates an event                         |
-|post    |/events/:id/cancel           | cancels the event                        |
-|post    |/events/:id/invite           | sends a email with a link to events/:id  |
-|post    |/events/:id/ignore/?         | removes user from guest list             |
+|get     |/quotes                      | shows the list of quotes                 |
+|get     |/quotes/create               | shows the quote creation form            |
+|post    |/quotes                      | creates a new quote                      |
+|get     |/quotes/:id                  | shows the quotes detail page             |
+|get     |/quotes/:id/edit             | shows the edit quote form                |
+|post    |/quotes/:id/                 | updates an quote                         |
+|post    |/quotes/:id/delete           | deletes the quote (isActive = false)     |
+|post    |/quotes/:id/like             | add a like to the quote                  |
+|post    |/quotes/:id/comment          | add a comment to the quote               |
 
 ---
 
@@ -182,6 +181,3 @@ Method   | Route                       | Whats does?                            
 |post    |/events/:id/cancel           | cancels the event                        |
 |post    |/events/:id/invite           | sends a email with a link to events/:id  |
 |post    |/events/:id/ignore/?         | removes user from guest list             |
-
-
-TODO!!! 
