@@ -1,4 +1,4 @@
-# Reference project (Module 2) **Iron Quotes**
+# Reference project (Module 2) **Quote**
 
 ## User Stories
 
@@ -94,13 +94,16 @@
       Review.schema
     ],
     likes: [
-      Like.schema
+      owner: {
+        type: ObjectId,
+        ref: 'User',
+        required: true
+      }
     ],
     isActive: {
       type: Boolean,
       default: true
-    },
-    
+    }    
   }, {
   timestamps: true
   }
@@ -123,7 +126,6 @@
   timestamps: true
   }
   ```
-
 
 ---
 ## Routes
@@ -166,18 +168,3 @@ Method   | Route                       | Whats does?                            
 |post    |/quotes/:id/delete           | deletes the quote (isActive = false)     |
 |post    |/quotes/:id/like             | add a like to the quote                  |
 |post    |/quotes/:id/comment          | add a comment to the quote               |
-
----
-
-## GROUPS
-Method   | Route                       | Whats does?                              |
-|:-------|:----------------------------|:-----------------------------------------|
-|get     |/events                      | shows the list of events                 |
-|get     |/events/create               | shows the event creation form            |
-|post    |/events                      | creates a new event                      |
-|get     |/events/:id                  | shows the events detail page             |
-|get     |/events/:id/edit             | shows the edit event form                |
-|post    |/events/:id/                 | updates an event                         |
-|post    |/events/:id/cancel           | cancels the event                        |
-|post    |/events/:id/invite           | sends a email with a link to events/:id  |
-|post    |/events/:id/ignore/?         | removes user from guest list             |
