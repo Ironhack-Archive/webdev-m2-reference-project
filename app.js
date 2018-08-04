@@ -1,6 +1,6 @@
 'use strict';
 
-// ---------- PACKAGES REQUIRED ----------
+// ---------- PACKAGES REQUIRED ---------- //
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -11,19 +11,19 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
 
-// ---------- CONFIGURE THE ROUTES ----------
+// ---------- CONFIGURE THE ROUTES ---------- //
 const index = require('./routes/index');
 const quotes = require('./routes/quotes');
 const auth = require('./routes/auth');
 
-// ---------- CREATE THE APP ----------
+// ---------- INITIALIZE THE APP ---------- //
 const app = express();
 
-// ---------- CONFIGURE THE VIEWS ----------
+// ---------- CONFIGURE THE VIEWS ---------- //
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// ---------- COOKIES AND SESSIONS ----------
+// ---------- COOKIES AND SESSIONS ---------- //
 app.use(session({
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
@@ -37,10 +37,10 @@ app.use(session({
   }
 }));
 
-// ---------- CONNECT THE DATABASE ----------
+// ---------- CONNECT THE DATABASE ---------- //
 mongoose.connect('mongodb://127.0.0.1:27017/iron-dixit');
 
-// ---------- MIDDLEWARES ----------
+// ---------- MIDDLEWARES ---------- //
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -54,15 +54,12 @@ app.use((req, res, next) => {
 });
 app.use(flash());
 
-// ---------- ROUTES ----------
+// ---------- ROUTES ---------- //
 app.use('/', index);
-app.use('/quotes', quotes);
 app.use('/auth', auth);
-app.get('/test', (req, res, next) => {
-  res.json({ foo: 'bar' });
-});
+app.use('/quotes', quotes);
 
-// ---------- 404 AND ERROR HANDLER ----------
+// ---------- 404 AND ERROR HANDLER ---------- //
 app.use((req, res, next) => {
   res.status(404);
   res.render('pages/errors/404');

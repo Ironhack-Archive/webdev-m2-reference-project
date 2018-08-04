@@ -88,7 +88,7 @@ router.post('/:id', (req, res, next) => {
     name: req.body.name,
     photo: req.body.photo,
     quote: req.body.quote,
-    user: req.body.user
+    user: req.session.user
   };
   Quote.update({ _id: req.params.id }, data)
     .then(() => {
