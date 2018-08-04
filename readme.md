@@ -183,3 +183,5 @@ Method   | Route                       | Whats does?                            
 |post    |/events/:id/invite           | sends a email with a link to events/:id  |
 |post    |/events/:id/ignore/?         | removes user from guest list             |
 
+
+TODO!!! 
