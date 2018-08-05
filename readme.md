@@ -27,13 +27,11 @@
 
     like: "As a user I can mar a quote in favorite so i can see it in my profile."
 
-    Comment: "As a user i can make a comment so that i can share mis thoughts about that quote with the community"
+  ### Profile Epic:
+    Profile: "As a user I would like to see my profile so I can manage my preferences and see my favorites quotes"
 
 ---
 ## Backlog:
-
-  ### Profile Epic:
-  Profile: "As a user I would like to see my profile so I can manage my preferences and see my favorites quotes and my groups."
 
   ### Group Epic:
     List: "As a user I can list group that are not private so i can"
@@ -90,16 +88,14 @@
       type: String,
       required: true
     },
-    reviews: [
-      Review.schema
-    ],
-    likes: [
-      owner: {
-        type: ObjectId,
-        ref: 'User',
-        required: true
-      }
-    ],
+    likeCount: {
+      type: Number,
+      default:0
+    },
+    likes: [{
+      type: ObjectId,
+      ref: 'User'
+    }],
     isActive: {
       type: Boolean,
       default: true
@@ -108,24 +104,6 @@
   timestamps: true
   }
  ```
-
-  ### Comment Sub-Schema  
-
-  ```
-  Comment {
-    content: {
-      type: String,
-      required: true
-    },
-    owner: {
-      type: ObjectId,
-      ref: 'User',
-      required: true
-    }
-  }, {
-  timestamps: true
-  }
-  ```
 
 ---
 ## Routes
@@ -167,4 +145,9 @@ Method   | Route                       | Whats does?                            
 |post    |/quotes/:id/                 | updates an quote                         |
 |post    |/quotes/:id/delete           | deletes the quote (isActive = false)     |
 |post    |/quotes/:id/like             | add a like to the quote                  |
-|post    |/quotes/:id/comment          | add a comment to the quote               |
+
+
+---
+## Helpful resources
+
+- [**How to model a likes voting system with mongoDB** (Stack Overflow)](https://stackoverflow.com/questions/28006521/how-to-model-a-likes-voting-system-with-mongodb)

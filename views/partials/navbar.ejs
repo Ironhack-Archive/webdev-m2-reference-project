@@ -3,22 +3,16 @@
     <h1>quote</h1>
     <a href="/"></a>
   </div>
-  <div>
-    <a href="/quotes" class="navbar-item navbar-link">List</a>
-    <% if (currentUser) { %>
-      <a href="/quotes/new" class="navbar-item navbar-link">Add</a>
-     <% }; %>
-  </div>
-  <!-- Right Navigation -->
   <div class="navbar-right">
     <% if (currentUser) { %>
       <form method="POST" action="/auth/logout">
         <button type="submit" class="navbar-item navbar-link">Log out</button>
       </form>
     <% } else { %>
-      <a href="/auth/login" class="navbar-item navbar-link">Log in</a>
+      <a href="/auth/login" class="navbar-item navbar-link"><strong>Log in</strong></a>
       <p class="navbar-item navbar-or">or</p>
-      <a href="/auth/signup" class="navbar-item navbar-link">Sign up</a>
+      <a href="/auth/signup" class="navbar-item navbar-link"><strong>Sign up</strong></a>
     <% }; %>
   </div>
 </nav>
+
