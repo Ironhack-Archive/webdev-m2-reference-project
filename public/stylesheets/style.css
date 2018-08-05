@@ -18,6 +18,13 @@ a:hover {
   text-decoration: none;
 }
 
+button {
+  border: none;
+  background: initial;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 /* ---------- TYPOGRAPHY ---------- */
 
 body {
@@ -43,109 +50,50 @@ p {
   margin: 0;
 }
 
-/* ---------- HOME LAYOUT ---------- */
+/* ---------- LAYOUT ---------- */
 
-#site-main { 
-  min-height: 100vh;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: column;
-  margin-bottom: -100px;
-}
-
-.hero {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
-  height: 200px;
-  width: 400px;
-}
-
-.logo {
+#main-container { 
+  min-height: calc(100vh - 50px);
   display: flex;
   align-items: center;
-}
-.main-title {
-  font-size: 50px;
-  color: lightgray;
-  font-weight: 100;
-  display: inline-block;
-  line-height: 50px;
+  padding-top: 60px;
 }
 
-.ih-logo {
-  height: 50px;
-  margin: 0px 40px;
-}
+/* ---------- Home ---------- */
 
-.navbar-logo {
-  display: flex;
-  align-items: center;
-}
-
-.navbar .main-title {
-  font-size: 16px;
-  color: lightgray;
-  font-weight: 100;
-  display: inline-block;
-  line-height: 16px;
-}
-
-.navbar .ih-logo {
-  height: 20px;
-  margin: 0px 10px;
-}
-
-.btn-holder {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0px 20px;
-}
-
-.btn-holder a {
-  width: 100px;
-}
-
-.no-btn {
-  border: none;
-  background: initial;
-  color: #616668;
-  font-size: 14px;
-  text-decoration: none;
-  cursor: pointer;
-  padding: 0 20px;
-}
-
-.no-btn:hover {
-  color: #3D7DB1;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
 
 /* ---------- NAVBAR ---------- */
 
-.navbar {
+nav {
   box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
   background: #F4F4F4;
-  height: 70px;
+  height: 60px;
   padding: 0px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: fixed;
   width: 100%;
-  z-index: 3333;
 }
 
-.logo-link {
-  text-decoration: none;
+nav .logo {
+  position: relative;
+  transition: all 0.3s ease;
 }
 
-.navbar .main-title:hover {
+nav .logo h1 {
+  font-size: 35px;
+}
+
+nav .logo a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+nav .logo:hover {
   color: #3D7DB1;
   transition: all 0.3s ease;
   text-decoration: none;
@@ -159,6 +107,9 @@ p {
 
 .navbar-item {
   cursor: pointer;
+  color: #616668;
+  font-size: 14px;
+  line-height: 14px;
   padding: 0 20px;
 }
 
@@ -174,27 +125,10 @@ p {
   padding: 0px;
   text-decoration: none;
   cursor: initial;
-
 }
 
 .navbar-link:hover {
   color: #3D7DB1;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.navbar-btn {
-  background-color: #3D7DB1;
-  margin: 0 20px;
-  color: white;
-  border-radius: 10px;
-  width: 90px;
-  text-align: center;
-}
-
-.navbar-btn:hover {
-  color: white;
-  background-color: rgb(22, 97, 158);
   text-decoration: none;
   transition: all 0.3s ease;
 }
@@ -206,7 +140,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 100px;
+  height: 50px;
   padding: 0px 50px;
   color: rgba(0,0,0,0.3);
 }
