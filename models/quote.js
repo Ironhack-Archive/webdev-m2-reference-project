@@ -5,19 +5,29 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
 const quoteSchema = new Schema({
-  name: {
-    type: String
+  owner: {
+    type: ObjectId,
+    ref: 'User',
   },
-  batch: {
-    type: String
+  body: {
+    type: String,
+    required: true
   },
-  quote: {
-    type: String
+  likeCount: {
+    type: Number,
+    default: 0
   },
-  user: {
+  likes: [{
     type: ObjectId,
     ref: 'User'
+  }],
+  isActive: {
+    type: Boolean,
+    default: true
   }
+}, 
+{
+  timestamps: true
 });
 
 const Quote = mongoose.model('Quote', quoteSchema);

@@ -22,8 +22,7 @@ router.post('/signup', (req, res, next) => {
     return res.redirect('/');
   };
 
-  const username = req.body.username;
-  const password = req.body.password;
+  const {username, password} = req.body;
 
   if (!username) {
     // PLEASE PROVIDE USERNAME
@@ -35,7 +34,7 @@ router.post('/signup', (req, res, next) => {
     return res.redirect('/auth/signup');
   }
 
-  User.findOne({ username: username })
+  User.findOne({ username })
     .then(result => {
       if (result) {
         // USERNAME ALREADY TAKEN
@@ -52,7 +51,7 @@ router.post('/signup', (req, res, next) => {
           .then(() => {
             req.session.user = user;
             // WELCOME <USERNAME> ESTE FLASH DEBERIA DESAPARECER CON EL TIEMPO (MAYBE SOME FRONT END JS???)
-            return res.redirect('/');
+            return res.redirect('/quotes');
           })
           .catch(next);
       };
@@ -75,17 +74,17 @@ router.post('/login', (req, res, next) => {
   if (req.session.user) {
     return res.redirect('/');
   };
-  const username = req.body.username;
-  const password = req.body.password;
+  const {username, password} = req.body;
 
-  User.findOne({ username: username })
+  User.findOne({ username })
     .then(result => {
       if (!result) {
         req.flash('loginError', 'User can not be found');
         return res.redirect('/auth/login');
       } else if (bcrypt.compareSync(password, result.password)) {
         req.session.user = result;
-        return res.redirect('/');
+        req.flash('welcomeMessage', 'Welcome back!');
+        return res.redirect('/quotes');
       } else {
         req.flash('loginError', 'Username or password are incorrect');
         return res.redirect('/auth/login');

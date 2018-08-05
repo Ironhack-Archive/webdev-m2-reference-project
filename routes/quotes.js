@@ -8,19 +8,11 @@ const Quote = require('../models/quote');
 router.get('/', (req, res, next) => {
   Quote.find({}).populate('user')
     .then((result) => {
-      const data = { quotes: result };
+      const data = { 
+        welcomeMessage: req.flash('welcomeMessage'),
+        quotes: result
+       };
       res.render('pages/quotes/index', data);
-    })
-    .catch(next);
-});
-
-// ---------- Random ---------- //
-router.get('/random', (req, res, next) => {
-  Quote.find({})
-    .then((result) => {
-      const rand = result[Math.floor(Math.random() * result.length)];
-      const data = { quote: rand };
-      res.render('pages/quotes/show', data);
     })
     .catch(next);
 });

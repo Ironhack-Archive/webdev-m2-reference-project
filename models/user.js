@@ -12,7 +12,18 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true
+  },
+  email: {
+    type: String,
+    required: true
+  },
+  imgPath: {
+    type: String,
+    default: "user-placeholder.jpg"
   }
+}, 
+{
+  timestamps: true
 });
 
 const User = mongoose.model('User', userSchema);

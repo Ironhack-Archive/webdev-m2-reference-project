@@ -16,4 +16,8 @@
       <button type="submit" class="btn btn-submit">Log in</button>
     </div>
   </form>
+
+  <% if (errorMessage) { %>
+    <p><%= errorMessage %></p>
+  <% } %>
 </div>
