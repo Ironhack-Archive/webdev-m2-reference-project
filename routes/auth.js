@@ -13,7 +13,8 @@ router.get('/signup', (req, res, next) => {
   if (req.session.user) {
     return res.redirect('/');
   };
-  res.render('pages/auth/signup');
+  const data = { errorMessage: req.flash('signupError') };
+  res.render('pages/auth/signup', data);
 });
 
 // ----- Post ----- //
@@ -22,22 +23,28 @@ router.post('/signup', (req, res, next) => {
     return res.redirect('/');
   };
 
-  const {username, password} = req.body;
+  const {username, password, email} = req.body;
 
   if (!username) {
+    req.flash('signupError', 'Please provide username');
     // PLEASE PROVIDE USERNAME
     return res.redirect('/auth/signup');
   };
 
   if (!password) {
-    // PLEASE PROVIDE PASSWORD
+    req.flash('signupError', 'Please provide password');
+    return res.redirect('/auth/signup');
+  }
+
+  if (!email) {
+    req.flash('signupError', 'Please provide email');
     return res.redirect('/auth/signup');
   }
 
   User.findOne({ username })
     .then(result => {
       if (result) {
-        // USERNAME ALREADY TAKEN
+        req.flash('signupError', 'Username already taken');
         return res.redirect('/auth/signup');
       } else {
         const salt = bcrypt.genSaltSync(bcryptSalt);
@@ -50,7 +57,7 @@ router.post('/signup', (req, res, next) => {
         user.save()
           .then(() => {
             req.session.user = user;
-            // WELCOME <USERNAME> ESTE FLASH DEBERIA DESAPARECER CON EL TIEMPO (MAYBE SOME FRONT END JS???)
+            req.flash('welcomeMessage', 'Welcome back!');
             return res.redirect('/quotes');
           })
           .catch(next);
