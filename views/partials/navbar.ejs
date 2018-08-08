@@ -1,18 +1,19 @@
 <nav>
   <div class="logo">
     <h1>quote</h1>
-    <a href="/"></a>
+      <a href="/"></a>
   </div>
   <div class="navbar-right">
     <% if (currentUser) { %>
+      <p class="navbar-item">Welcome <%= currentUser.username %></p>
       <form method="POST" action="/auth/logout">
-        <button type="submit" class="navbar-item navbar-link">Log out</button>
+        <button type="submit" class="navbar-item navbar-link"><strong>Log out</strong></button>
       </form>
     <% } else { %>
       <a href="/auth/login" class="navbar-item navbar-link"><strong>Log in</strong></a>
-      <p class="navbar-item navbar-or">or</p>
       <a href="/auth/signup" class="navbar-item navbar-link"><strong>Sign up</strong></a>
     <% }; %>
   </div>
 </nav>
+
 

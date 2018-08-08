@@ -6,7 +6,7 @@ const Quote = require('../models/quote');
 
 // ---------- Index ---------- //
 router.get('/', (req, res, next) => {
-  Quote.find({}).populate('user')
+  Quote.find({}).populate('owner')
     .then((result) => {
       const data = { 
         welcomeMessage: req.flash('welcomeMessage'),
@@ -46,10 +46,10 @@ router.post('/', (req, res, next) => {
   };
 
   const quote = new Quote(req.body);
-  quote.user = req.session.user;
+  quote.owner = req.session.user;
   quote.save()
     .then(() => {
-      res.redirect(`/quotes/${quote._id}`);
+      res.redirect(`/quotes`);
     })
     .catch(next);
 });

@@ -61,6 +61,13 @@ p {
   padding-top: 60px;
 }
 
+.avatar-sm {
+  width: 40px;
+  border-radius: 50%;
+  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
+}
+
+
 /* ---------- Home ---------- */
 
 .logo {
@@ -120,16 +127,21 @@ nav .logo:hover {
 }
 
 .navbar-item {
+  color: #616668;
+  font-size: 14px;
+  line-height: 14px;
+  padding: 0;
+  user-select: none;
+}
+
+.navbar-link {
   cursor: pointer;
   color: #616668;
   font-size: 14px;
   line-height: 14px;
-}
-
-.navbar-link {
-  color: #616668;
-  font-size: 14px;
   text-decoration: none;
+  vertical-align: text-top;
+  margin-left: 20px; 
 }
 
 .navbar-or {
@@ -184,66 +196,22 @@ nav .logo:hover {
 
 /* ---------- STUDENT CARD ---------- */
 
-.cards-container {
-  padding-top: 150px;
-  margin-bottom: 200px;
-}
 
-.row-spacing {
-  margin-bottom: 80px;
-}
 
 .student-card {
   margin: 0 auto;
   background-color: #F4F4F4;
   box-shadow: 0px 0px 3px rgba(0,0,0,0.2);
-  width: 300px;
-  height: 400px;
+  width: 600px;
+  height: 200px;
   border-radius: 4px;
   position: relative;
 }
 
 .student-card img {
-  width: 100px;
-  border-radius: 50%;
-  border: 1px solid darkgray;
   position: absolute;
   top: 25px;
   right: 100px;
-}
-
-.student-card-top .title {
-  font-size: 25px;
-  font-weight: 100;
-  width: 300px;
-  padding: 0 10px;
-  color: black !important;
-  position: absolute;
-  top: 20px;
-  text-align: center;
-}
-
-.student-card-top .occupation {
-  font-size: 15px;
-  font-weight: 100;
-  width: 300px;
-  padding: 0 10px;
-  color: black !important;
-  position: absolute;
-  top: 60px;
-  text-align: center;
-}
-
-.student-card .phrase {
-  font-size: 20px;
-  font-weight: 100;
-  width: 300px;
-  padding: 0 20px;
-  color: black !important;
-  position: absolute;
-  bottom: 150px;
-  left: 0px;
-  text-align: center;
 }
 
 .student-card-top .btn-danger {

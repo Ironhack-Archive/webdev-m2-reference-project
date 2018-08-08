@@ -21,30 +21,24 @@
 
     Show: "As a user I can show a specific quote so i can see the details of the quote."
 
-    Update: "As a user I can update a quote so i can change it details."
+    Edit: "As a user I can edit a quote so i can change it details."
 
     Delete: "As a user I can delete a quote so i can erase it from the face of the earth."
 
-    like: "As a user I can mar a quote in favorite so i can see it in my profile."
-
-  ### Profile Epic:
-    Profile: "As a user I would like to see my profile so I can manage my preferences and see my favorites quotes"
+    like: "As a user I can mark a quote in favorite so i can see it in my profile."
 
 ---
 ## Backlog:
 
-  ### Group Epic:
-    List: "As a user I can list group that are not private so i can"
+  ### Quote Epic:
+    Report: "As a user I can report a quote so i can help building a cool comunity"
 
-    Create: "As a user I can group so i can see all the quotes specific to that group."
+    Comment: "As a user i can comment a quote so i can start a thread cith other members of the comunity"
 
-    Show: "As a user I can show a specific group so i can "
+  ## Admin Epic:
+    Delete quote:
 
-    Update: "As a user i can update a group so i can change it prefenrences"
-
-    Invite: "As a user i can invite other users to the private group so i can start sharing quotes with them."
-
-    Join: "As a user I can join a public group so i can start sharing quotes with others members."
+    Block user:    
 
 ---
 ## Models
@@ -69,6 +63,10 @@
     picture: {
       type: string,
       required: true
+    },
+    isActive: {
+      type: boolean,
+      default: true
     }
   }, {
   timestamps: true
@@ -108,11 +106,6 @@
 ---
 ## Routes
 
-## INDEX
-Method   | Route                       | Whats does?                              |
-|:-------|:----------------------------|:-----------------------------------------|
-|get     |/                            | show the homepage                        |
-
 ---
 
 ## ERRORS
@@ -142,7 +135,7 @@ Method   | Route                       | Whats does?                            
 |post    |/quotes                      | creates a new quote                      |
 |get     |/quotes/:id                  | shows the quotes detail page             |
 |get     |/quotes/:id/edit             | shows the edit quote form                |
-|post    |/quotes/:id/                 | updates an quote                         |
+|post    |/quotes/:id                  | updates an quote                         |
 |post    |/quotes/:id/delete           | deletes the quote (isActive = false)     |
 |post    |/quotes/:id/like             | add a like to the quote                  |
 

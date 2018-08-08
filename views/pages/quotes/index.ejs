@@ -1,31 +1,10 @@
-<div class="cards-container">
-  <div class="row">
-    <% quotes.forEach((quote) => { %>
-      <div class="col-xs-12 col-sm-4 row-spacing">
-        <div class="student-card">
-          <div class="student-card-top">
-            <!-- <img src="<%= quote.photo %>" alt=""> -->
-            <h3 class="title"><%= quote.name %></h3>
-            <p class="occupation"><%= quote.batch %></p>
-            <p class="phrase"><em>"<%= quote.quote %>"</em></p>
-            <% if (currentUser && currentUser._id == quote.user._id) { %>
-              <form method="POST" action="/quotes/<%= quote._id %>/delete">
-                <button class="btn btn-danger">
-                  <i class="far fa-trash-alt"></i>
-                </button>
-              </form>
-              <form method="GET" action="/quotes/<%= quote._id %>/edit">
-                <button class="btn btn-success">
-                  <i class="fas fa-pencil-alt"></i>
-                </button>
-              </form>
-            <% } else { %>
-              <p class="owner">Owned by <%= quote.user.username %></p>
-            <% }; %>
-          </div>
-          <a class="link" href="/quotes/<%= quote._id%>"></a>
-        </div>
-      </div>
-    <% }) %>
+<% quotes.forEach((quote) => { %>
+  <div class="student-card">
+    <div class="student-card-top">
+      <h3><%= quote.body %></h3>
+      <img class="avatar-sm "src="images/<%= quote.owner.imgPath %>" alt="">
+      <p><%= quote.owner.username %></p>
+    </div>
+    <a class="link" href="/quotes/<%= quote._id%>"></a>
   </div>
-</div>
+<% }) %>

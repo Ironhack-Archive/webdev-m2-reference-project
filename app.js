@@ -49,7 +49,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressLayouts);
 app.use((req, res, next) => {
   app.locals.currentUser = req.session.user;
-  console.log('USER SESSION', req.session.id);
   next();
 });
 app.use(flash());
