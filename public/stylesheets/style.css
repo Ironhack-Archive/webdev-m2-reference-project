@@ -2,7 +2,7 @@
 
 html {
   box-sizing: border-box;
-  min-height: 100vh;
+  min-height: 100vh;  
 }
 *, *:before, *:after {
   box-sizing: inherit;
@@ -44,6 +44,11 @@ h2 {
 
 h3 {
   margin: 0;
+}
+
+h5 {
+  margin: 0;
+  font-weight: normal;
 }
 
 p {
@@ -194,65 +199,45 @@ nav .logo:hover {
   font-weight: 100;
 }
 
-/* ---------- STUDENT CARD ---------- */
+/* ---------- QUOTE CARD ---------- */
 
-
-
-.student-card {
+.quote-card {
   margin: 0 auto;
-  background-color: #F4F4F4;
+  border: 1px solid #F4F4F4;
   box-shadow: 0px 0px 3px rgba(0,0,0,0.2);
-  width: 600px;
-  height: 200px;
-  border-radius: 4px;
-  position: relative;
-}
-
-.student-card img {
-  position: absolute;
-  top: 25px;
-  right: 100px;
-}
-
-.student-card-top .btn-danger {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
-  height: 25px;
-  line-height: 0px;
-  padding: 1px 15px;
-  font-size: 10px;
-  z-index: 31;
-}
-
-.student-card-top .btn-success {
-  position: absolute;
-  bottom: 20px;
-  right: 60px;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-  height: 25px;
-  line-height: 0px;
-  padding: 1px 15px;
-  font-size: 10px;
-  z-index: 31;
-}
-
-.student-card .owner {
-  position: absolute;
-  bottom: 20px;
-  left: 0px;
-  z-index: 40;
   width: 100%;
-  text-align: center;
-  color: #616668;
-  font-size: 14px;
-  font-weight: 100;
+  height: 200px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
-.student-card .link {
+.quote-card img {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.quote-card p {
+  position: absolute;
+  top: 10px;
+  left: 60px;
+  text-transform: capitalize;
+}
+
+.quote-card h5 {
+  position: absolute;
+  top: 30px;
+  left: 60px;
+  text-transform: capitalize;
+}
+
+.quote-card h3 {
+  text-transform: capitalize;
+}
+
+.quote-card .link {
   position: absolute;
   top: 0px;
   right: 0px;

@@ -1,0 +1,104 @@
+{
+  "_id": ObjectId("5ad5b2a52c47be4adcaa2fe4"),
+  "name": "Byron",
+  "batch": "WebDev TA",
+  "quote": "Your code is shit!!!!",
+  "user": ObjectId("5ad5ebcdb6acda6330dc4e52"),
+  "__v": 0
+}
+{
+  "_id": ObjectId("5ad5b3b82e2f844d17865b6b"),
+  "name": "Andre",
+  "batch": "WebDev Lead Teacher",
+  "quote": "The headers are always there",
+  "user": ObjectId("5ad5ebcdb6acda6330dc4e52"),
+  "__v": 0
+}
+{
+  "_id": ObjectId("5ad5b3cd2e2f844d17865b6c"),
+  "name": "Eloi",
+  "batch": "WebDev TA",
+  "quote": "Para eso estamos",
+  "user": ObjectId("5ad4bafeb1ba0414ca501700"),
+  "__v": 0
+}
+{
+  "_id": ObjectId("5ad5b3e42e2f844d17865b6d"),
+  "name": "Andre",
+  "batch": "WebDev Lead teacher",
+  "quote": "Everything is fractal",
+  "user": ObjectId("5ad4bafeb1ba0414ca501700"),
+  "__v": 0
+}
+{
+  "_id": ObjectId("5ad5b4082e2f844d17865b6e"),
+  "name": "Andre",
+  "batch": "WebDev Lead Teacher",
+  "quote": "Be careful, I shall said this only once",
+  "user": ObjectId("5ad4bafeb1ba0414ca501700"),
+  "__v": 0
+}
+{
+  "_id": ObjectId("5ad5b4342e2f844d17865b6f"),
+  "name": "Andre",
+  "batch": "WebDev Lead Teacher",
+  "quote": "Order Matters",
+  "user": ObjectId("5ad4bafeb1ba0414ca501700"),
+  "__v": 0
+}
+{
+  "_id": ObjectId("5ad5bba79b52ba53ef34d4c6"),
+  "name": "Rapha",
+  "batch": "WebDev Student",
+  "quote": "I always get lost in brackets",
+  "user": ObjectId("5ad5ebcdb6acda6330dc4e52"),
+  "__v": 0
+}
+{
+  "_id": ObjectId("5ad5cb3ad512345b8ad67500"),
+  "name": "German",
+  "batch": "WebDev Student",
+  "quote": "The hair is the grass of the body",
+  "user": ObjectId("5ad4bafeb1ba0414ca501700"),
+  "__v": 0
+}
+{
+  "_id": ObjectId("5ad60aef4c63d0680d117a33"),
+  "name": "Lennie",
+  "batch": "WebDev Student",
+  "quote": "There is always a way",
+  "user": ObjectId("5ad5ebcdb6acda6330dc4e52"),
+  "__v": 0
+}
+{
+  "_id": ObjectId("5ad613bf4f6b716c398f8a3d"),
+  "name": "Andre",
+  "batch": "WebDev Lead Teacher",
+  "quote": "Everything we do need to have a purpose",
+  "user": ObjectId("5ad5ebcdb6acda6330dc4e52"),
+  "__v": 0
+}
+{
+  "_id": ObjectId("5ad7144774beb3221a069a6e"),
+  "name": "Byron",
+  "batch": "WebDev TA",
+  "quote": "Daa fakkkk???",
+  "user": ObjectId("5ad5ebcdb6acda6330dc4e52"),
+  "__v": 0
+}
+{
+  "_id": ObjectId("5ad719a274beb3221a069a6f"),
+  "name": "Eloi",
+  "batch": "WebDev TA",
+  "quote": "LOOOOOL",
+  "user": ObjectId("5ad5ebcdb6acda6330dc4e52"),
+  "__v": 0
+}
+{
+  "_id": ObjectId("5ad7201a74beb3221a069a70"),
+  "name": "Andre",
+  "batch": "WebDev Lead Teacher",
+  "quote": "Cool?, Cool?, Cool?.",
+  "user": ObjectId("5ad5ebcdb6acda6330dc4e52"),
+  "__v": 0
+}

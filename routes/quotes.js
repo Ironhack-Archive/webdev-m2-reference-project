@@ -8,10 +8,10 @@ const Quote = require('../models/quote');
 router.get('/', (req, res, next) => {
   Quote.find({}).populate('owner')
     .then((result) => {
-      const data = { 
+      const data = {
         welcomeMessage: req.flash('welcomeMessage'),
         quotes: result
-       };
+      };
       res.render('pages/quotes/index', data);
     })
     .catch(next);
