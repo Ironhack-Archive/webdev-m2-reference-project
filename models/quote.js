@@ -13,6 +13,19 @@ const quoteSchema = new Schema({
     type: String,
     required: true
   },
+  from: {
+    type: String,
+    required: true
+  },
+  location: {
+    type: String,
+    required: true
+  },
+  date: {
+    type: Date,
+    required: true,
+    default: Date.now()
+  },
   likeCount: {
     type: Number,
     default: 0
