@@ -1,11 +1,5 @@
-<% quotes.forEach((quote) => { %>
-  <div class="student-card">
-    <div class="student-card-top">
-      <h3><%= quote.body %></h3>
-      <p><%= quote.from %></p>
-      <p><%= quote.location %></p>
-      <p><%= quote.date %></p>
-    </div>
-    <a class="link" href="/quotes/<%= quote._id%>"></a>
-  </div>
-<% }) %>
+<div class="quotes-container">
+  <% quotes.forEach((quote) => { %>
+    <%- include('../../partials/quote-card.ejs', {quote: quote}); %>
+  <% }) %>
+</div>

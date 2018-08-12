@@ -22,7 +22,8 @@ router.get('/new', (req, res, next) => {
   if (!req.session.user) {
     return res.redirect('auth/login');
   };
-  res.render('pages/quotes/new');
+  const data = { errorMessage: req.flash('newQuoteError') };
+  res.render('pages/quotes/new', data);
 });
 
 // ---------- Show ---------- //
@@ -44,6 +45,23 @@ router.post('/', (req, res, next) => {
   if (!req.session.user) {
     return res.redirect('auth/login');
   };
+
+  const {body, from,location, date} = req.body;
+
+  if (!body) {
+    req.flash('newQuoteError', 'Cannot submit an empty quote');
+    return res.redirect('/quotes/new');
+  };
+
+  if (!from) {
+    req.flash('newQuoteError', 'Please tell us who said it');
+    return res.redirect('/quotes/new');
+  }
+
+  if (!location) {
+    req.flash('newQuoteError', 'Please tell us where you heared it');
+    return res.redirect('/quotes/new');
+  }
 
   const quote = new Quote(req.body);
   quote.owner = req.session.user;

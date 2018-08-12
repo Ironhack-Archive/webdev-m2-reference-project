@@ -1,19 +1,19 @@
 <div class="form-container">
-  <h1 class="form-title">Create your Iron quote</h1>
+  <h1 class="form-title">Create a new Quote</h1>
+  <div class="error-container">
+    <% if (errorMessage.length) { %>
+      <p><%= errorMessage %></p>
+    <% } %>
+  </div>
   <form method="POST" action="/quotes">
-    <div class="field">
-      <input type="text" placeholder="Write your quote..." name="body" />
+    <div class="quote-field">
+      <textarea type="text" placeholder="Write your quote..." name="body" /></textarea>
     </div>
-    <div class="field">
-      <input type="text" placeholder="Who said it?" name="from" />
+    <div class="field-inline">
+      <input type="text" placeholder="Who?" name="from" />
+      <input type="text" placeholder="Where?" name="location" />
     </div>
-    <div class="field">
-      <input type="text" placeholder="Where you heared it?" name="location" />
-    </div>
-    <div class="field">
-      <input type="date" name="date" />
-    </div>
-    <div class="field submit">
+    <div class="submit">
       <button type="submit" class="btn btn-submit">Send quote</button>
     </div>
   </form>
