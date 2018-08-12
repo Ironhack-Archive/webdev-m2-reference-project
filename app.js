@@ -38,7 +38,7 @@ app.use(session({
 }));
 
 // ---------- CONNECT THE DATABASE ---------- //
-mongoose.connect('mongodb://127.0.0.1:27017/iron-dixit');
+mongoose.connect('mongodb://127.0.0.1:27017/quote');
 
 // ---------- MIDDLEWARES ---------- //
 app.use(logger('dev'));
