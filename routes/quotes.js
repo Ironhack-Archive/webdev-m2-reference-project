@@ -26,27 +26,13 @@ router.get('/new', (req, res, next) => {
   res.render('pages/quotes/new', data);
 });
 
-// ---------- Show ---------- //
-router.get('/:id', (req, res, next) => {
-  Quote.findOne({_id: req.params.id})
-    .then((result) => {
-      if (!result) {
-        next();
-        return;
-      }
-      const data = { quote: result };
-      res.render('pages/quotes/show', data);
-    })
-    .catch(next);
-});
-
 // ---------- Create ---------- //
 router.post('/', (req, res, next) => {
   if (!req.session.user) {
     return res.redirect('auth/login');
   };
 
-  const {body, from,location, date} = req.body;
+  const {body, from, location} = req.body;
 
   if (!body) {
     req.flash('newQuoteError', 'Cannot submit an empty quote');

@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 
-/* GET home page. */
+// ---------- Home Page ---------- //
 router.get('/', (req, res, next) => {
   if (req.session.user) {
     return res.redirect('/quotes');

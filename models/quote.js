@@ -7,7 +7,7 @@ const ObjectId = Schema.Types.ObjectId;
 const quoteSchema = new Schema({
   owner: {
     type: ObjectId,
-    ref: 'User',
+    ref: 'User'
   },
   body: {
     type: String,
@@ -33,7 +33,7 @@ const quoteSchema = new Schema({
     type: Boolean,
     default: true
   }
-}, 
+},
 {
   timestamps: true
 });

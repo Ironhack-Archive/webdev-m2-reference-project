@@ -19,13 +19,13 @@ const userSchema = new Schema({
   },
   imgPath: {
     type: String,
-    default: "user-placeholder.jpg"
+    default: 'user-placeholder.jpg'
   },
   isActive: {
     type: Boolean,
     default: true
   }
-}, 
+},
 {
   timestamps: true
 });
