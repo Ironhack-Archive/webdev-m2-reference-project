@@ -19,26 +19,26 @@
 
     Create: "As a user I can add a quote so i can share it with the rest of the comunity."
 
-    Show: "As a user I can show a specific quote so i can see the details of the quote."
-
     Edit: "As a user I can edit a quote so i can change it details."
 
     Delete: "As a user I can delete a quote so i can erase it from the face of the earth."
 
-    like: "As a user I can mark a quote in favorite so i can see it in my profile."
+    Like: "As a user I can mark a quote in favorite so i can see it in my profile."
 
 ---
 ## Backlog:
 
   ### Quote Epic:
+    Show: "As a user I can show a specific quote so i can see the details of the quote."
+
     Report: "As a user I can report a quote so i can help building a cool comunity"
 
-    Comment: "As a user i can comment a quote so i can start a thread cith other members of the comunity"
+    Comment: "As a user i can comment a quote so i can start a thread with other members of the comunity"
 
   ## Admin Epic:
-    Delete quote:
+    Delete quote: "As an admin i can delete a quote so i can react to a reported quote"
 
-    Block user:    
+    Block user: "As an admin i can block a user so i can clean the comunity"  
 
 ---
 ## Models
@@ -57,19 +57,19 @@
       required: true
     },
     email: {
-      type: string,
+      type: String,
       required: true
     },
-    picture: {
-      type: string,
-      required: true
+    imgPath: {
+      type: String,
+      default: 'user-placeholder.jpg'
     },
     isActive: {
-      type: boolean,
+      type: Boolean,
       default: true
+    }, {
+    timestamps: true
     }
-  }, {
-  timestamps: true
   }
   ```
 
@@ -78,17 +78,24 @@
   ```
   Quote {
     owner: {
-      type: ObjectId,
-      ref: 'User',
-      required: true
+    type: ObjectId,
+    ref: 'User'
     },
     body: {
       type: String,
       required: true
     },
+    from: {
+      type: String,
+      required: true
+    },
+    location: {
+      type: String,
+      required: true
+    },
     likeCount: {
       type: Number,
-      default:0
+      default: 0
     },
     likes: [{
       type: ObjectId,
@@ -96,10 +103,10 @@
     }],
     isActive: {
       type: Boolean,
-      default: true
-    }    
-  }, {
-  timestamps: true
+      default: true   
+    }, {
+    timestamps: true
+    }
   }
  ```
 
@@ -133,7 +140,6 @@ Method   | Route                       | Whats does?                            
 |get     |/quotes                      | shows the list of quotes                 |
 |get     |/quotes/create               | shows the quote creation form            |
 |post    |/quotes                      | creates a new quote                      |
-|get     |/quotes/:id                  | shows the quotes detail page             |
 |get     |/quotes/:id/edit             | shows the edit quote form                |
 |post    |/quotes/:id                  | updates an quote                         |
 |post    |/quotes/:id/delete           | deletes the quote (isActive = false)     |
