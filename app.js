@@ -1,6 +1,5 @@
 'use strict';
 
-
 // ---------- PACKAGES REQUIRED ---------- //
 const express = require('express');
 const path = require('path');
@@ -11,22 +10,19 @@ const expressLayouts = require('express-ejs-layouts');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
-
+const favicon = require('serve-favicon');
 
 // ---------- CONFIGURE THE ROUTES ---------- //
 const index = require('./routes/index');
 const quotes = require('./routes/quotes');
 const auth = require('./routes/auth');
 
-
 // ---------- INITIALIZE THE APP ---------- //
 const app = express();
-
 
 // ---------- CONFIGURE THE VIEWS ---------- //
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
 
 // ---------- COOKIES AND SESSIONS ---------- //
 app.use(session({
@@ -42,10 +38,8 @@ app.use(session({
   }
 }));
 
-
 // ---------- CONNECT THE DATABASE ---------- //
 mongoose.connect('mongodb://127.0.0.1:27017/quote');
-
 
 // ---------- MIDDLEWARES ---------- //
 app.use(logger('dev'));
@@ -59,13 +53,12 @@ app.use((req, res, next) => {
   next();
 });
 app.use(flash());
-
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // ---------- ROUTES ---------- //
 app.use('/', index);
 app.use('/auth', auth);
 app.use('/quotes', quotes);
-
 
 // ---------- 404 AND ERROR HANDLER ---------- //
 app.use((req, res, next) => {
