@@ -205,37 +205,35 @@ nav .logo:hover {
   margin: 0 auto;
   border: 1px solid #F4F4F4;
   box-shadow: 0px 0px 3px rgba(0,0,0,0.2);
-  width: 100%;
+  width: 60%;
   height: 200px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: space-around;
+  flex-direction: column;
+  border-radius: 5px;
+  padding: 10px;
 }
 
-.quote-card img {
-  position: absolute;
-  top: 10px;
-  left: 10px;
+.quote-card .quote-body {
+  height: 80%;
+  width: 100%;
+  text-align: center;
 }
 
-.quote-card p {
-  position: absolute;
-  top: 10px;
-  left: 60px;
+.quote-card .quote-body h3 {
   text-transform: capitalize;
 }
 
-.quote-card h5 {
-  position: absolute;
-  top: 30px;
-  left: 60px;
-  text-transform: capitalize;
+
+.quote-card .quote-footer {
+  height: 20%;
+  width: 100%;
+  text-align: right;
+  vertical-align: baseline;
 }
 
-.quote-card h3 {
-  text-transform: capitalize;
-}
 
 .quote-card .link {
   position: absolute;
@@ -248,56 +246,8 @@ nav .logo:hover {
 }
 
 
-.student-card .link:hover {
+.quote-card .link:hover {
   cursor: pointer;
-}
-
-/* ---------- STUDENT SHOW PAGE ---------- */
-
-
-.student-container {
-  width: 90%;
-  position: relative;
-  background-color: white;
-  height: 700px;
-}
-
-.student-container .name {
-  font-weight: 100;
-  font-size: 100px;
-  line-height: 100px;
-  position: absolute;
-  top: 50px;
-  left: 0px;
-}
-
-.student-container .avatar {
-  position: absolute;
-  border-radius: 50%;
-  top: 0px;
-  right: 0px;
-  height: 200px;
-}
-
-.student-container .occupation {
-  font-weight: 100;
-  font-size: 30px;
-  line-height: 30px;
-  position: absolute;
-  top: 150px;
-  left: 0px;
-}
-
-.student-container .phrase {
-  font-weight: 100;
-  font-size: 80px;
-  line-height: 70px;
-  color: black;
-  width: 100%;
-  position: absolute;
-  top: 400px;
-  left: 0px;
-  text-align: center;
 }
 
 /* ---------- FORM ---------- */
@@ -387,27 +337,4 @@ form .submit button {
   width: 30%;
   background-color: #3D7DB1;
   cursor: pointer;
-}
-
-/* ---------- FILTER CONTAINER ---------- */
-
-.filter-container {
-  margin-bottom: 40px;
-  margin-left: 40px;
-  text-align: center;
-}
-.filter-container select {
-  margin-right: 30px;
-  border-radius: 2px;
-  height: 30px;
-  width: 200px;
-}
-
-.filter-container .btn-submit {
-  height: 30px;
-  width: 100px;
-  border-radius: 3px;
-  font-size: 16px;
-  line-height: 16px;
-
 }

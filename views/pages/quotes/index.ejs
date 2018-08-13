@@ -1,10 +1,12 @@
 <% quotes.forEach((quote) => { %>
-  <div class="student-card">
-    <div class="student-card-top">
-      <h3><%= quote.body %></h3>
-      <p><%= quote.from %></p>
-      <p><%= quote.location %></p>
-      <p><%= quote.date %></p>
+  <div class="quote-card">
+    <div class="quote-body">
+      <h3>" <%= quote.body %> "</h3>
+    </div>
+    <div class="quote-footer">
+      <p class="from"><%= quote.from %></p>
+      <p class="location"><%= quote.location %></p>
+      <p class="date"><%= quote.date %></p>
     </div>
     <a class="link" href="/quotes/<%= quote._id%>"></a>
   </div>
