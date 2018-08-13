@@ -5,13 +5,12 @@
   </div>
   <div class="navbar-right">
     <% if (currentUser) { %>
-      <p class="navbar-item">Welcome <%= currentUser.username %></p>
       <form method="POST" action="/auth/logout">
-        <button type="submit" class="navbar-item navbar-link"><strong>Log out</strong></button>
+        <button type="submit" class="navbar-item navbar-link">Log out</button>
       </form>
     <% } else { %>
-      <a href="/auth/login" class="navbar-item navbar-link"><strong>Log in</strong></a>
-      <a href="/auth/signup" class="navbar-item navbar-link"><strong>Sign up</strong></a>
+      <a href="/auth/login" class="navbar-item navbar-link">Log in</a>
+      <a href="/auth/signup" class="navbar-item navbar-link">Sign up</a>
     <% }; %>
   </div>
 </nav>

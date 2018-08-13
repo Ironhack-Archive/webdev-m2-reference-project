@@ -2,14 +2,17 @@
 
 html {
   box-sizing: border-box;
-  min-height: 100vh;  
+  min-height: 100% !important;
+  margin: 0;
+  padding: 0;
 }
+
 *, *:before, *:after {
   box-sizing: inherit;
 }
 
 body {
-  min-height: 100vh;
+  min-height: 100% !important;
   margin: 0;
   padding: 0;
 }
@@ -28,14 +31,14 @@ button {
 /* ---------- TYPOGRAPHY ---------- */
 
 body {
-  color: rgb(51, 51, 51 );
-  font-family: Helvetica, Arial, sans-serif;
+  color: #3C4859;
   font-size: 16px;
   line-height: 147%;
 }
 
-h1 {
+h1, h2, h3, h5 {
   margin: 0;
+  font-family: 'Montserrat', sans-serif;
 }
 
 h2 {
@@ -53,6 +56,7 @@ h5 {
 
 p {
   margin: 0;
+  font-family: 'Roboto', sans-serif;
 }
 
 /* ---------- LAYOUT ---------- */
@@ -69,7 +73,7 @@ p {
 .avatar-sm {
   width: 40px;
   border-radius: 50%;
-  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
+  box-shadow: 0 1px 5px 0 #3C4859;
 }
 
 
@@ -91,7 +95,7 @@ p {
 /* ---------- NAVBAR ---------- */
 
 nav {
-  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
+  box-shadow: 0 1px 5px 0 #3C4859;
   background: #F4F4F4;
   height: 60px;
   padding: 0px 30px;
@@ -100,6 +104,7 @@ nav {
   justify-content: space-between;
   position: fixed;
   width: 100%;
+  z-index: 1;
 }
 
 nav .logo {
@@ -120,7 +125,7 @@ nav .logo a {
 }
 
 nav .logo:hover {
-  color: #3D7DB1;
+  color: #0FACF3;
   transition: all 0.3s ease;
   text-decoration: none;
 }
@@ -132,7 +137,7 @@ nav .logo:hover {
 }
 
 .navbar-item {
-  color: #616668;
+  color: #3C4859;
   font-size: 14px;
   line-height: 14px;
   padding: 0;
@@ -141,25 +146,15 @@ nav .logo:hover {
 
 .navbar-link {
   cursor: pointer;
-  color: #616668;
+  color: #3C4859;
   font-size: 14px;
   line-height: 14px;
   text-decoration: none;
-  vertical-align: text-top;
   margin-left: 20px; 
 }
 
-.navbar-or {
-  color: #616668;
-  font-size: 14px;
-  padding: 0px;
-  text-decoration: none;
-  cursor: initial;
-  padding: 0 20px;
-}
-
 .navbar-link:hover {
-  color: #3D7DB1;
+  color: #0FACF3;
   text-decoration: none;
   transition: all 0.3s ease;
 }
@@ -174,64 +169,86 @@ nav .logo:hover {
   height: 50px;
   padding: 0px 50px;
   color: rgba(0,0,0,0.3);
+  box-shadow: 0 -1px 5px 0 #3C4859;
+  z-index: 1;
 }
 .footer-links {
   display: flex;
   align-items: center;
 }
 .footer-links a {
-  color: lightgray;
+  color: #3C4859;
   text-decoration: none;
   font-size: 24px;
   padding: 0px 10px;
 }
 .footer-links a:hover {
-  color: #3D7DB1;
+  color: #0FACF3;
   text-decoration: none;
   transition: all 0.3s ease;
 }
-.footer .fa-heart {
-  color: #D23333;
-  margin: auto 10px;
-}
 
-.footer-copyright {
-  font-weight: 100;
-}
+/* ---------- QUOTES INDEX ---------- */
 
-/* ---------- QUOTE CARD ---------- */
+.quotes-container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 50px;
+  justify-content: space-between;
+}
 
 .quote-card {
-  margin: 0 auto;
   border: 1px solid #F4F4F4;
-  box-shadow: 0px 0px 3px rgba(0,0,0,0.2);
-  width: 60%;
-  height: 200px;
+  box-shadow: 0px 0px 3px #3C4859;
+  width: 400px;
+  height: 500px;
   position: relative;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
   flex-direction: column;
-  border-radius: 5px;
-  padding: 10px;
+  justify-content: space-between;
+  padding: 20px;
+  margin: 20px;
+  margin-bottom: 50px;
 }
 
 .quote-card .quote-body {
   height: 80%;
   width: 100%;
-  text-align: center;
+  background-color: lightgray;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-weight: 400;
 }
-
-.quote-card .quote-body h3 {
-  text-transform: capitalize;
-}
-
 
 .quote-card .quote-footer {
-  height: 20%;
   width: 100%;
-  text-align: right;
-  vertical-align: baseline;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 400;
+}
+
+.quote-card h3 {
+  text-align: center;
+  text-transform: capitalize;
+  font-weight: lighter;
+  letter-spacing: 2px;
+}
+
+.quote-card .like-counter p {
+  margin-right: 10px; 
+}
+
+.quote-card p { 
+  text-transform: capitalize;
+  font-family: 'Just Another Hand' !important;
+  letter-spacing: 2px;
+  font-size: 20px;
+  display: inline;
 }
 
 
@@ -245,7 +262,6 @@ nav .logo:hover {
   z-index: 30;
 }
 
-
 .quote-card .link:hover {
   cursor: pointer;
 }
@@ -253,9 +269,7 @@ nav .logo:hover {
 /* ---------- FORM ---------- */
 
 .form-container {
-  border: 1px solid black;
   border-radius: 5px;
-  background-color: lightgray;
   padding: 50px;
 }
 
@@ -272,30 +286,35 @@ form.is-processing {
 }
 
 form .field {
-  margin-bottom: 20px;
+  margin-bottom: 60px;
+  border-bottom: 1px solid #3C4859;
+  font-size: 22px;
+  width: 100%;
+}
+
+form .field-inline {
+  margin-bottom: 60px;
+  font-size: 22px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+}
+
+form .quote-field {
+  margin-bottom: 60px;
+  font-size: 22px;
+  width: 100%;
 }
 
 .form-container .main-title {
-  color: black;
+  color: #3C4859;
   font-size: 20px;
-}
-
-.form-container .logo {
-  display: flex;
-  justify-content: space-around;
-  padding: 0px 100px;
-  margin-bottom: 40px;
-}
-
-.form-container .ih-logo{
-  height: 30px;
-  margin: 0px;
 }
 
 .form-container .form-title {
   text-align: center;
-  font-weight: 100;
-  margin-bottom: 40px;
+  font-size: 40px; 
 }
 
 form label {
@@ -305,36 +324,64 @@ form label {
 }
 
 form input {
-  padding: 20px;
-  font-size: 16px;
+  font-size: 22px;
   height: 40px;
-  width: 400px;
+  width: 100%;
   border: none;
   border-radius: 2px;
+  text-align: center;
+  padding-bottom: 15px;
+}
+
+form input:focus {
+  outline: 0 !important;
+}
+
+form textarea:focus {
+  outline: 0 !important;
 }
 
 form textarea {
+  width: 100%;
+  height: 200px;
   padding: 20px;
-  font-size: 16px;
-  line-height: 20px;
-  height: 160px;
-  width: 400px;
-  border: none;
-  border-radius: 2px;
+  font-size: 22px;
+  border: 1px solid #3C4859;
+  resize: none;
 }
 
 form .submit {
-  padding-top: 20px;
-  width: 400px;
-  text-align: end;
-  margin-bottom: 0px;
+  padding-top: 40px;
+  width: 100%;
+  text-align: center;
 }
 
 form .submit button {
-  padding: 5px 20px;
+  padding: 10px 40px;
   text-align: center;
-  font-size: 16px;
-  width: 30%;
-  background-color: #3D7DB1;
+  font-size: 20px;
+  line-height: 20px;
+  background-color: #0FACF3;
   cursor: pointer;
+  border-radius: 20px;
+  color: white;
+}
+
+form .submit button:focus {
+  outline: 0 !important;
+}
+
+.error-container {
+  height: 80px;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+  margin-block-end: 50px;
+}
+
+.error-container p{
+  background: #CA054D;
+  line-height: 50px;
+  border-radius: 5px;
+  color: white;
 }

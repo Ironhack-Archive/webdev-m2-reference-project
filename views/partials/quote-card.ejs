@@ -1,0 +1,13 @@
+<div class="quote-card">
+  <div class="quote-body">
+    <h3>"<%= quote.body %>"</h3>
+  </div>
+  <div class="quote-footer">
+    <div class="like-counter">
+      <p><%= quote.likeCount %></p>
+      <p>Likes</p>
+    </div>
+    <p><em><%= quote.from %> (<%= quote.location %>)</em></p>
+  </div>
+  <a class="link" href="/quotes/<%= quote._id%>"></a>
+</div>
