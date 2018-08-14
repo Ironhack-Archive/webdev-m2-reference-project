@@ -3,10 +3,7 @@
     <h3>"<%= quote.body %>"</h3>
   </div>
   <div class="quote-footer">
-    <div class="like-counter">
-      <p><%= quote.likeCount %></p>
-      <p>Likes</p>
-    </div>
+    <p id="<%= quote._id %>"><%= quote.likeCount %> Likes</p>
     <p><em><%= quote.from %> (<%= quote.location %>)</em></p>
   </div>
 </div>

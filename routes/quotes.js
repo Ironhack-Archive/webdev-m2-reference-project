@@ -105,4 +105,19 @@ router.post('/:id/delete', (req, res, next) => {
     .catch(next);
 });
 
+// ---------- Like ---------- //
+router.post('/:id/like', (req, res, next) => {
+  const id = req.params.id;
+  if (!req.session.user) {
+    return res.redirect('/auth/login');
+  };
+  const filter = {};
+
+  Quote.findByIdAndUpdate(id, filter)
+    .then(() => {
+      res.json({ mesage: 'OK' });
+    })
+    .catch(next);
+});
+
 module.exports = router;
