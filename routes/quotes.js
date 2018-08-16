@@ -107,15 +107,35 @@ router.post('/:id/delete', (req, res, next) => {
 
 // ---------- Like ---------- //
 router.post('/:id/like', (req, res, next) => {
-  const id = req.params.id;
   if (!req.session.user) {
     return res.redirect('/auth/login');
   };
-  const filter = {};
 
-  Quote.findByIdAndUpdate(id, filter)
-    .then(() => {
-      res.json({ mesage: 'OK' });
+  const id = req.params.id;
+  let alreadyLiked = false;
+  let update = {};
+
+  Quote.findById(id)
+    .then((quote) => {
+      quote.likes.forEach((like) => {
+        if (like.equals(req.session.user._id)) {
+          alreadyLiked = true;
+        }
+      });
+
+      if (alreadyLiked) {
+        update = { '$inc': { 'likeCount': -1 }, '$pull': { 'likes': req.session.user._id } };
+      } else {
+        update = { '$inc': { 'likeCount': 1 }, '$push': { 'likes': req.session.user._id } };
+      }
+      return Quote.findByIdAndUpdate(id, update);
+    })
+    .then((quote) => {
+      if (!alreadyLiked) {
+        res.json({ message: 'Liked' });
+      } else {
+        res.json({ message: 'Unliked' });
+      }
     })
     .catch(next);
 });

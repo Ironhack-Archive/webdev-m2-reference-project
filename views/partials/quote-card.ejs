@@ -3,7 +3,10 @@
     <h3>"<%= quote.body %>"</h3>
   </div>
   <div class="quote-footer">
-    <p id="<%= quote._id %>"><%= quote.likeCount %> Likes</p>
+    <form method="POST" action="/quotes/<%= quote._id%>/like">
+      <button>Like</button>
+    </form>
+    <p><%= quote.likeCount %> Likes</p>
     <p><em><%= quote.from %> (<%= quote.location %>)</em></p>
   </div>
 </div>
