@@ -5,12 +5,9 @@ const heart = document.querySelectorAll('.heart');
 heart.forEach((heart) => {
   const handleClickEvent = (event) => {
     const id = event.target.getAttribute('data');
-    console.log(id);
 
     axios.post(`http://localhost:3000/quotes/${id}/like`)
       .then(response => {
-        console.log(response);
-
         const likeCounterElement = event.path[3].childNodes[3].children[0].childNodes[0];
 
         if (response.data.action === 'liked') {
