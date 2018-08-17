@@ -1,11 +1,13 @@
 'use strict';
 
-const theParent = document.querySelector('.quotes-container');
+const heart = document.querySelectorAll('.heart');
 
-const handleClickEvent = (e) => {
-  const id = e.target.id;
-  if (id) {
-    axios.post(`https://localhost:3000/quotes/${id}/like`, {})
+heart.forEach((heart) => {
+  const handleClickEvent = (event) => {
+    const id = event.target.getAttribute('data');
+    console.log(id);
+
+    axios.post(`http://localhost:3000/quotes/${id}/like`)
       .then(response => {
         console.log('post success');
         console.log(response);
@@ -14,8 +16,6 @@ const handleClickEvent = (e) => {
         console.log('Oh No! Error!');
         console.log(error);
       });
-  }
-  e.stopPropagation();
-};
-
-theParent.addEventListener('click', handleClickEvent);
+  };
+  heart.addEventListener('click', handleClickEvent);
+});
