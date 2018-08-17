@@ -128,13 +128,13 @@ router.post('/:id/like', (req, res, next) => {
       } else {
         update = { '$inc': { 'likeCount': 1 }, '$push': { 'likes': req.session.user._id } };
       }
-      return Quote.findByIdAndUpdate(id, update);
+      return Quote.findByIdAndUpdate(id, update, {new: true});
     })
     .then((quote) => {
       if (!alreadyLiked) {
-        res.json({ message: 'Liked' });
+        res.json({ action: 'liked', likes: quote.likeCount });
       } else {
-        res.json({ message: 'Unliked' });
+        res.json({ action: 'unliked', likes: quote.likeCount });
       }
     })
     .catch(next);
