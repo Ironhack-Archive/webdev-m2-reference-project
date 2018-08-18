@@ -5,9 +5,12 @@ const router = express.Router();
 const Quote = require('../models/quote');
 
 const upload = require('../middlewares/upload');
+const auth = require('../middlewares/auth');
 
-// ---------- Index ---------- //
-router.get('/', (req, res, next) => {
+
+// ---------- GET - Quote index ---------- //
+router.get('/', auth.requireUser, (req, res, next) => {
+ 
   Quote.find({isActive: true}).populate('owner')
     .then((results) => {
       results.forEach((quote) => {
@@ -28,21 +31,18 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
-// ---------- New ---------- //
-router.get('/new', (req, res, next) => {
-  if (!req.session.user) {
-    return res.redirect('auth/login');
-  };
+
+// ---------- GET - Quote new ---------- //
+router.get('/new', auth.requireUser, (req, res, next) => {
+  
   const data = { errorMessage: req.flash('newQuoteError') };
   res.render('pages/quotes/new', data);
 });
 
-// ---------- Create ---------- //
-router.post('/', upload.single('photo'), (req, res, next) => {
-  if (!req.session.user) {
-    return res.redirect('auth/login');
-  };
 
+// ---------- POST - Quote new ---------- //
+router.post('/', auth.requireUser, upload.single('photo'), (req, res, next) => {
+ 
   const {body, from, location} = req.body;
 
   let background;
@@ -87,11 +87,10 @@ router.post('/', upload.single('photo'), (req, res, next) => {
     .catch(next);
 });
 
-// ---------- Edit ---------- //
-router.get('/:id/edit', (req, res, next) => {
-  if (!req.session.user) {
-    return res.redirect('/auth/login');
-  };
+
+// ---------- GET - Quote edit ---------- //
+router.get('/:id/edit', auth.requireUser, (req, res, next) => {
+  
   Quote.findOne({ _id: req.params.id })
     .then((result) => {
       if (!result) {
@@ -107,13 +106,10 @@ router.get('/:id/edit', (req, res, next) => {
     .catch(next);
 });
 
-// ---------- Update --------- //
-router.post('/:id', upload.single('photo'), (req, res, next) => {
-  if (!req.session.user) {
-    return res.redirect('auth/login');
-  };
 
-
+// ---------- POST - Quote edit ---------- //
+router.post('/:id', auth.requireUser, upload.single('photo'), (req, res, next) => {
+  
   const {body, from, location} = req.body;
 
   let background;
@@ -144,11 +140,10 @@ router.post('/:id', upload.single('photo'), (req, res, next) => {
     .catch(next);
 });
 
-// ---------- Delete ---------- //
-router.post('/:id/delete', (req, res, next) => {
-  if (!req.session.user) {
-    return res.redirect('/auth/login');
-  };
+
+// ---------- POST - Quote delete ---------- //
+router.post('/:id/delete', auth.requireUser, (req, res, next) => {
+  
   Quote.remove({ _id: req.params.id })
     .then(() => {
       res.redirect(`/quotes`);
@@ -156,11 +151,9 @@ router.post('/:id/delete', (req, res, next) => {
     .catch(next);
 });
 
-// ---------- Like ---------- //
-router.post('/:id/like', (req, res, next) => {
-  if (!req.session.user) {
-    return res.redirect('/auth/login');
-  };
+
+// ---------- POST - Quote like ---------- //
+router.post('/:id/like', auth.requireUser, (req, res, next) => {
 
   const id = req.params.id;
   let alreadyLiked = false;

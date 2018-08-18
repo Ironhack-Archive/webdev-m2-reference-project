@@ -2,12 +2,12 @@
 
 const express = require('express');
 const router = express.Router();
+const auth = require('../middlewares/auth');
 
-// ---------- Home Page ---------- //
-router.get('/', (req, res, next) => {
-  if (req.session.user) {
-    return res.redirect('/quotes');
-  }
+
+// ---------- GET - Home ---------- //
+router.get('/', auth.requireAnon, (req, res, next) => {
+  
   res.render('pages/index');
 });
 

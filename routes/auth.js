@@ -5,29 +5,23 @@ const bcrypt = require('bcrypt');
 const User = require('../models/user');
 const router = express.Router();
 const bcryptSalt = 10;
+const auth = require('../middlewares/auth');
 
-// ---------- SIGN UP ---------- //
 
-// ----- Get ----- //
-router.get('/signup', (req, res, next) => {
-  if (req.session.user) {
-    return res.redirect('/');
-  };
+// ---------- GET - Signup ---------- //
+router.get('/signup', auth.requireAnon, (req, res, next) => {
   const data = { errorMessage: req.flash('signupError') };
   res.render('pages/auth/signup', data);
 });
 
-// ----- Post ----- //
-router.post('/signup', (req, res, next) => {
-  if (req.session.user) {
-    return res.redirect('/');
-  };
+
+// ---------- POST - Signup ---------- //
+router.post('/signup', auth.requireAnon, (req, res, next) => {
 
   const {username, password, email} = req.body;
 
   if (!username) {
     req.flash('signupError', 'Please provide username');
-    // PLEASE PROVIDE USERNAME
     return res.redirect('/auth/signup');
   };
 
@@ -66,22 +60,18 @@ router.post('/signup', (req, res, next) => {
     });
 });
 
-// ---------- LOGIN ---------- //
 
-// ----- Get ----- //
-router.get('/login', (req, res, next) => {
-  if (req.session.user) {
-    return res.redirect('/');
-  };
+// ---------- GET - Login ---------- //
+router.get('/login', auth.requireAnon, (req, res, next) => {
+  
   const data = { errorMessage: req.flash('loginError') };
   res.render('pages/auth/login', data);
 });
 
-// ----- Post ----- //
-router.post('/login', (req, res, next) => {
-  if (req.session.user) {
-    return res.redirect('/');
-  };
+
+// ---------- POST - Login ---------- //
+router.post('/login', auth.requireAnon, (req, res, next) => {
+  
   const {username, password} = req.body;
 
   User.findOne({ username })
@@ -101,9 +91,10 @@ router.post('/login', (req, res, next) => {
     .catch(next);
 });
 
-// ---------- LOGOUT ---------- //
 
-router.post('/logout', (req, res, next) => {
+// ---------- POST - Logout ---------- //
+router.post('/logout', auth.requireUser, (req, res, next) => {
+  
   delete req.session.user;
   return res.redirect('/');
 });
