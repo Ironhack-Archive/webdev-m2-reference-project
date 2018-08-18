@@ -456,11 +456,29 @@ form .submit button:focus {
   margin-block-end: 50px;
 }
 
-.error-container p{
+.error-container p {
   background: #CA054D;
   line-height: 50px;
   border-radius: 5px;
   color: white;
+}
+
+.field-delete {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+
+}
+
+input[type='checkbox'] {
+  height: 20px;
+  display: inline-block;
+  width: 20px;  
+}
+
+.field-delete h5 {
+  margin-left: 10px;
+  color: #CA054D;
 }
 
 .inputfile {
