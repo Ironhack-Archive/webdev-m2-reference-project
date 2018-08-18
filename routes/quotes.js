@@ -8,7 +8,7 @@ const upload = require('../middlewares/upload');
 
 // ---------- Index ---------- //
 router.get('/', (req, res, next) => {
-  Quote.find({}).populate('owner')
+  Quote.find({isActive: true}).populate('owner')
     .then((results) => {
       results.forEach((quote) => {
         quote.likes.forEach((likerId) => {
@@ -98,26 +98,48 @@ router.get('/:id/edit', (req, res, next) => {
         next();
         return;
       }
-      const data = { quote: result };
+      const data = { 
+        errorMessage: req.flash('newQuoteError'),
+        quote: result 
+      };
       res.render('pages/quotes/edit', data);
     })
     .catch(next);
 });
 
 // ---------- Update --------- //
-router.post('/:id', (req, res, next) => {
+router.post('/:id', upload.single('photo'), (req, res, next) => {
   if (!req.session.user) {
-    return res.redirect('/auth/login');
+    return res.redirect('auth/login');
   };
-  const data = {
-    name: req.body.name,
-    photo: req.body.photo,
-    quote: req.body.quote,
-    user: req.session.user
-  };
-  Quote.update({ _id: req.params.id }, data)
+
+
+  const {body, from, location} = req.body;
+
+  let background;
+
+  if (req.file) {
+    background = (url => {
+      const backgroundConfig = "w_360,h_368";
+      const array = url.split("/");
+      array.splice(6, 0, backgroundConfig);
+      array.splice(0, 2, "https:/");
+      const parsedUrl = array.join("/");
+      return parsedUrl;
+    })(req.file.secure_url)
+  } else {
+    background = req.body.photo;
+  }
+
+  let isActive = true;
+
+  if (req.body.delete === "on") {
+    isActive = false;
+  }
+
+  Quote.findByIdAndUpdate(req.params.id, {body, from, location, isActive, background})
     .then(() => {
-      res.redirect(`/quotes/${req.params.id}`);
+      res.redirect(`/quotes`);
     })
     .catch(next);
 });

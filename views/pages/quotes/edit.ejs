@@ -1,25 +1,30 @@
 <div class="form-container">
-  <div class="logo">
-    <h1 class="main-title">IRON</h1>
-    <img class="ih-logo" src="/images/logo.png" alt="">
-    <h1 class="main-title">QUOTES</h1>
+  <h1 class="form-title">Edit your quote</h1>
+  <div class="error-container">
+    <% if (errorMessage.length) { %>
+      <p><%= errorMessage %></p>
+    <% } %>
   </div>
-  <h1 class="form-title">Update your Iron quote</h1>
-  <form method="POST" action="/quotes/<%= quote._id %>">
-
-    <div class="field">
-      <input type="text" placeholder="Name" name="name" value="<%= quote.name %>" />
+  <form method="POST" action="/quotes/<%= quote._id %>" enctype="multipart/form-data">
+    <div class="quote-field">
+      <textarea type="text" placeholder="Write your quote..." name="body"/><%= quote.body%></textarea>
+    </div>
+    <div class="field-inline">
+      <input type="text" placeholder="Who?" name="from" value="<%= quote.from %>"/>
+      <input type="text" placeholder="Where?" name="location" value="<%= quote.location %>"/>
     </div>
 
-    <div class="field">
-      <input type="text" placeholder="Batch" name="batch" value="<%= quote.batch %>" />
-    </div>
 
     <div class="field">
-      <textarea placeholder="Quote" name="quote" ><%= quote.quote %></textarea>
+      <input type="hidden" name="photo" value="<%= quote.background %>"/>
+      <input type="file" name="photo" value="<%= quote.background %>"/>
+    </div>
+    
+    <div>
+      <input type="checkbox" placeholder="Quote" name="delete"><span><h5> Yes! I want to delete this quote.</h5></span>
     </div>
 
-    <div class="field submit">
+    <div class="submit">
       <button type="submit" class="btn btn-submit">Send quote</button>
     </div>
   </form>
