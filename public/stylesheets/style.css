@@ -200,7 +200,7 @@ nav .logo:hover {
   flex-direction: row;
   flex-wrap: wrap;
   padding: 50px;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .quote-card {
