@@ -1,6 +1,5 @@
 <div class="quote-card">
-  <a href="quotes/<%= quote._id%>/edit">edit</a>
-
+  
   <div class="quote-body">
     <h3>"<%= quote.body %>"</h3>
     <% if ( quote.background ) { %>
@@ -22,4 +21,7 @@
       <p><em><%= quote.from %> (<%= quote.location %>)</em></p>
     </div>
   </div>
+  <% if ( currentUser._id === String(quote.owner._id)) { %>
+    <a class="link" href="quotes/<%= quote._id%>/edit"></a>
+  <% }; %>
 </div>

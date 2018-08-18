@@ -14,10 +14,11 @@
       <input type="text" placeholder="Where?" name="location" value="<%= quote.location %>"/>
     </div>
 
-
-    <div class="field">
+    
+    <div class="field-inline">
       <input type="hidden" name="photo" value="<%= quote.background %>"/>
-      <input type="file" name="photo" value="<%= quote.background %>"/>
+      <input type="file" placeholder="Picture" name="photo" id="file" class="inputfile"/>
+      <label for="file">Choose background</label>
     </div>
     
     <div>
@@ -29,3 +30,5 @@
     </div>
   </form>
 </div>
+
+<script src="/javascripts/file-upload.js"></script>
