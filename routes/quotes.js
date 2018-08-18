@@ -4,6 +4,8 @@ const express = require('express');
 const router = express.Router();
 const Quote = require('../models/quote');
 
+const upload = require('../middlewares/upload');
+
 // ---------- Index ---------- //
 router.get('/', (req, res, next) => {
   Quote.find({}).populate('owner')
@@ -27,12 +29,25 @@ router.get('/new', (req, res, next) => {
 });
 
 // ---------- Create ---------- //
-router.post('/', (req, res, next) => {
+router.post('/', upload.single('photo'), (req, res, next) => {
   if (!req.session.user) {
     return res.redirect('auth/login');
   };
 
   const {body, from, location} = req.body;
+
+  let background;
+  
+  if (req.file) {
+    background = (url => {
+      const backgroundConfig = "w_360,h_368";
+      const array = url.split("/");
+      array.splice(6, 0, backgroundConfig);
+      array.splice(0, 2, "https:/");
+      const parsedUrl = array.join("/");
+      return parsedUrl;
+    })(req.file.secure_url)
+  }
 
   if (!body) {
     req.flash('newQuoteError', 'Cannot submit an empty quote');
@@ -42,14 +57,19 @@ router.post('/', (req, res, next) => {
   if (!from) {
     req.flash('newQuoteError', 'Please tell us who said it');
     return res.redirect('/quotes/new');
-  }
+  };
 
   if (!location) {
     req.flash('newQuoteError', 'Please tell us where you heared it');
     return res.redirect('/quotes/new');
   }
 
-  const quote = new Quote(req.body);
+  if (!background) {
+    req.flash('newQuoteError', 'Please upload a background picture');
+    return res.redirect('/quotes/new');
+  }
+
+  const quote = new Quote({body, from, location, background});
   quote.owner = req.session.user;
   quote.save()
     .then(() => {

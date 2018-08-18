@@ -1,6 +1,7 @@
 'use strict';
 
 // ---------- PACKAGES REQUIRED ---------- //
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -39,7 +40,7 @@ app.use(session({
 }));
 
 // ---------- CONNECT THE DATABASE ---------- //
-mongoose.connect('mongodb://127.0.0.1:27017/quote');
+mongoose.connect('mongodb://127.0.0.1:27017/quote', { useNewUrlParser: true });
 
 // ---------- MIDDLEWARES ---------- //
 app.use(logger('dev'));

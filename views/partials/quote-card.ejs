@@ -1,6 +1,9 @@
 <div class="quote-card">
   <div class="quote-body">
     <h3>"<%= quote.body %>"</h3>
+    <% if ( quote.background ) { %>
+      <img class="quote-background" src="<%= quote.background %>" alt="">
+    <% }; %>
   </div>
   <div class="quote-footer">
     <div id="like">

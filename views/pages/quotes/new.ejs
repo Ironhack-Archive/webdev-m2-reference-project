@@ -5,7 +5,7 @@
       <p><%= errorMessage %></p>
     <% } %>
   </div>
-  <form method="POST" action="/quotes">
+  <form method="POST" action="/quotes" enctype="multipart/form-data">
     <div class="quote-field">
       <textarea type="text" placeholder="Write your quote..." name="body" /></textarea>
     </div>
@@ -13,6 +13,11 @@
       <input type="text" placeholder="Who?" name="from" />
       <input type="text" placeholder="Where?" name="location" />
     </div>
+
+    <div class="field">
+      <input type="file" name="photo" />
+    </div>
+
     <div class="submit">
       <button type="submit" class="btn btn-submit">Send quote</button>
     </div>

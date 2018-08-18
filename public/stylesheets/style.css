@@ -221,12 +221,29 @@ nav .logo:hover {
   height: 80%;
   width: 100%;
   background-color: lightgray;
-  padding: 20px;
   display: flex;
   align-items: center;
   justify-content: space-around;
   font-weight: 400;
   border-radius: 2px;
+  position: relative;
+  z-index: 1;
+}
+
+.quote-card .quote-body h3 {
+  color: white;
+  text-shadow: 0 0 2px black;
+  z-index: 2;
+  font-size: 24px;  
+}
+
+.quote-body .quote-background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  filter: brightness(70%);
 }
 
 .quote-card .quote-footer {
@@ -255,6 +272,7 @@ nav .logo:hover {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  z-index: 2;
 }
 
 .quote-footer .button-holder .heart {
