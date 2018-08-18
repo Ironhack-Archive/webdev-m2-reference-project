@@ -237,6 +237,25 @@ nav .logo:hover {
   font-size: 24px;  
 }
 
+.quote-card .quote-body a {
+  color: white;
+  z-index: 2;
+  font-size: 100px;
+  text-decoration: none;
+  transition: 0.3s ease all
+}
+
+.quote-card .quote-body a:hover {
+  font-size: 110px;
+  transition: 0.3s ease all;
+}
+
+
+.quote-card .quote-body a:active {
+  font-size: 90px;
+  transition: 0.3s ease all;
+}
+
 .quote-body .quote-background {
   position: absolute;
   width: 100%;

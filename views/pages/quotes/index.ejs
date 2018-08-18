@@ -1,4 +1,15 @@
 <div class="quotes-container">
+    <div class="quote-card">
+        <div class="quote-body">
+          <a class="quotes-add" href="quotes/new"><i class="far fa-plus-square"></i></a>
+        </div>
+        <div class="quote-footer">
+          <div id="like">
+            <div class="button-holder">
+            </div>
+          </div>
+        </div>
+      </div>
   <% quotes.forEach((quote) => { %>
     <%- include('../../partials/quote-card.ejs', {quote: quote}); %>
   <% }) %>
