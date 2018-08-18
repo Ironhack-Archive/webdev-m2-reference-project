@@ -299,6 +299,10 @@ nav .logo:hover {
   outline: 0 !important;
 }
 
+.quote-footer .button-holder .heart:hover {
+  cursor: pointer;
+}
+
 .quote-footer .quote-info {
   display: flex;
   flex-direction: row;
