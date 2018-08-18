@@ -36,6 +36,10 @@ const quoteSchema = new Schema({
   background: { 
     type: String,
     required: true
+  },
+  currentUserLiked: {
+    type: Boolean,
+    default: false
   }
 },
 {

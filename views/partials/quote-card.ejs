@@ -8,7 +8,7 @@
   <div class="quote-footer">
     <div id="like">
       <div class="button-holder">
-        <% if ( quote ) { %>
+        <% if ( quote.currentUserLiked ) { %>
           <img src="images/liked.png" class="heart" alt="" data="<%= quote._id%>">
         <% } else { %>
           <img src="images/unliked.png" class="heart" alt="" data="<%= quote._id%>">

@@ -9,10 +9,19 @@ const upload = require('../middlewares/upload');
 // ---------- Index ---------- //
 router.get('/', (req, res, next) => {
   Quote.find({}).populate('owner')
-    .then((result) => {
+    .then((results) => {
+      results.forEach((quote) => {
+        quote.likes.forEach((likerId) => {
+          const objectIdToNum = likerId.toString();
+          if (objectIdToNum === req.session.user._id) {
+            quote.set('currentUserLiked', true, {strict: false});
+          }
+
+        })
+      })
       const data = {
         welcomeMessage: req.flash('welcomeMessage'),
-        quotes: result
+        quotes: results
       };
       res.render('pages/quotes/index', data);
     })
