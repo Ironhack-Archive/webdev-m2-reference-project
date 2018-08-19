@@ -22,11 +22,7 @@ router.get('/', auth.requireUser, (req, res, next) => {
 
         })
       })
-      const data = {
-        welcomeMessage: req.flash('welcomeMessage'),
-        quotes: results
-      };
-      res.render('pages/quotes/index', data);
+      res.render('pages/quotes/index', results);
     })
     .catch(next);
 });
@@ -49,7 +45,7 @@ router.post('/', auth.requireUser, upload.single('photo'), (req, res, next) => {
   
   if (req.file) {
     background = (url => {
-      const backgroundConfig = "w_360,h_368";
+      const backgroundConfig = "w_360,h_368,c_crop";
       const array = url.split("/");
       array.splice(6, 0, backgroundConfig);
       array.splice(0, 2, "https:/");
@@ -116,7 +112,7 @@ router.post('/:id', auth.requireUser, upload.single('photo'), (req, res, next) =
 
   if (req.file) {
     background = (url => {
-      const backgroundConfig = "w_360,h_368";
+      const backgroundConfig = "w_360,h_368,c_fill";
       const array = url.split("/");
       array.splice(6, 0, backgroundConfig);
       array.splice(0, 2, "https:/");
