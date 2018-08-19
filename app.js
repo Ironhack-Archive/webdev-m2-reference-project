@@ -14,7 +14,7 @@ const flash = require('connect-flash');
 const favicon = require('serve-favicon');
 
 // ---------- CONFIGURE THE ROUTES ---------- //
-const index = require('./routes/index');
+const pages = require('./routes/pages');
 const quotes = require('./routes/quotes');
 const auth = require('./routes/auth');
 
@@ -57,7 +57,7 @@ app.use(flash());
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // ---------- ROUTES ---------- //
-app.use('/', index);
+app.use('/', pages);
 app.use('/auth', auth);
 app.use('/quotes', quotes);
 
