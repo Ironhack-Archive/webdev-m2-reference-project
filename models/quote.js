@@ -33,7 +33,7 @@ const quoteSchema = new Schema({
     type: Boolean,
     default: true
   },
-  background: { 
+  background: {
     type: String,
     required: true
   },

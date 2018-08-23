@@ -7,10 +7,8 @@ const Quote = require('../models/quote');
 const upload = require('../middlewares/upload');
 const auth = require('../middlewares/auth');
 
-
 // ---------- GET - Quote index ---------- //
 router.get('/', auth.requireUser, (req, res, next) => {
- 
   Quote.find({isActive: true}).populate('owner')
     .then((results) => {
       results.forEach((quote) => {
@@ -19,39 +17,34 @@ router.get('/', auth.requireUser, (req, res, next) => {
           if (objectIdToNum === req.session.user._id) {
             quote.set('currentUserLiked', true, {strict: false});
           }
-
-        })
-      })
+        });
+      });
       res.render('pages/quotes/index', results);
     })
     .catch(next);
 });
 
-
 // ---------- GET - Quote new ---------- //
 router.get('/new', auth.requireUser, (req, res, next) => {
-  
   const data = { errorMessage: req.flash('newQuoteError') };
   res.render('pages/quotes/new', data);
 });
 
-
 // ---------- POST - Quote new ---------- //
 router.post('/', auth.requireUser, upload.single('photo'), (req, res, next) => {
- 
   const {body, from, location} = req.body;
 
   let background;
-  
+
   if (req.file) {
     background = (url => {
-      const backgroundConfig = "w_360,h_368,c_crop";
-      const array = url.split("/");
+      const backgroundConfig = 'w_360,h_368,c_crop';
+      const array = url.split('/');
       array.splice(6, 0, backgroundConfig);
-      array.splice(0, 2, "https:/");
-      const parsedUrl = array.join("/");
+      array.splice(0, 2, 'https:/');
+      const parsedUrl = array.join('/');
       return parsedUrl;
-    })(req.file.secure_url)
+    })(req.file.secure_url);
   }
 
   if (!body) {
@@ -83,49 +76,45 @@ router.post('/', auth.requireUser, upload.single('photo'), (req, res, next) => {
     .catch(next);
 });
 
-
 // ---------- GET - Quote edit ---------- //
 router.get('/:id/edit', auth.requireUser, (req, res, next) => {
-  
   Quote.findOne({ _id: req.params.id })
     .then((result) => {
       if (!result) {
         next();
         return;
       }
-      const data = { 
+      const data = {
         errorMessage: req.flash('newQuoteError'),
-        quote: result 
+        quote: result
       };
       res.render('pages/quotes/edit', data);
     })
     .catch(next);
 });
 
-
 // ---------- POST - Quote edit ---------- //
 router.post('/:id', auth.requireUser, upload.single('photo'), (req, res, next) => {
-  
   const {body, from, location} = req.body;
 
   let background;
 
   if (req.file) {
     background = (url => {
-      const backgroundConfig = "w_360,h_368,c_fill";
-      const array = url.split("/");
+      const backgroundConfig = 'w_360,h_368,c_fill';
+      const array = url.split('/');
       array.splice(6, 0, backgroundConfig);
-      array.splice(0, 2, "https:/");
-      const parsedUrl = array.join("/");
+      array.splice(0, 2, 'https:/');
+      const parsedUrl = array.join('/');
       return parsedUrl;
-    })(req.file.secure_url)
+    })(req.file.secure_url);
   } else {
     background = req.body.photo;
   }
 
   let isActive = true;
 
-  if (req.body.delete === "on") {
+  if (req.body.delete === 'on') {
     isActive = false;
   }
 
@@ -136,10 +125,8 @@ router.post('/:id', auth.requireUser, upload.single('photo'), (req, res, next) =
     .catch(next);
 });
 
-
 // ---------- POST - Quote delete ---------- //
 router.post('/:id/delete', auth.requireUser, (req, res, next) => {
-  
   Quote.remove({ _id: req.params.id })
     .then(() => {
       res.redirect(`/quotes`);
@@ -147,10 +134,8 @@ router.post('/:id/delete', auth.requireUser, (req, res, next) => {
     .catch(next);
 });
 
-
 // ---------- POST - Quote like ---------- //
 router.post('/:id/like', auth.requireUser, (req, res, next) => {
-
   const id = req.params.id;
   let alreadyLiked = false;
   let update = {};

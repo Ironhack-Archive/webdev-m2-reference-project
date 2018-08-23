@@ -7,17 +7,14 @@ const router = express.Router();
 const bcryptSalt = 10;
 const auth = require('../middlewares/auth');
 
-
 // ---------- GET - Signup ---------- //
 router.get('/signup', auth.requireAnon, (req, res, next) => {
   const data = { errorMessage: req.flash('signupError') };
   res.render('pages/auth/signup', data);
 });
 
-
 // ---------- POST - Signup ---------- //
 router.post('/signup', auth.requireAnon, (req, res, next) => {
-
   const {username, password, email} = req.body;
 
   if (!username) {
@@ -60,18 +57,14 @@ router.post('/signup', auth.requireAnon, (req, res, next) => {
     });
 });
 
-
 // ---------- GET - Login ---------- //
 router.get('/login', auth.requireAnon, (req, res, next) => {
-  
   const data = { errorMessage: req.flash('loginError') };
   res.render('pages/auth/login', data);
 });
 
-
 // ---------- POST - Login ---------- //
 router.post('/login', auth.requireAnon, (req, res, next) => {
-  
   const {username, password} = req.body;
 
   User.findOne({ username })
@@ -91,10 +84,8 @@ router.post('/login', auth.requireAnon, (req, res, next) => {
     .catch(next);
 });
 
-
 // ---------- POST - Logout ---------- //
 router.post('/logout', auth.requireUser, (req, res, next) => {
-  
   delete req.session.user;
   return res.redirect('/');
 });
