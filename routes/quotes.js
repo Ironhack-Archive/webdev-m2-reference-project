@@ -10,8 +10,8 @@ const auth = require('../middlewares/auth');
 // ---------- GET - Quote index ---------- //
 router.get('/', auth.requireUser, (req, res, next) => {
   Quote.find({isActive: true}).populate('owner')
-    .then((results) => {
-      results.forEach((quote) => {
+    .then((quotes) => {
+      quotes.forEach((quote) => {
         quote.likes.forEach((likerId) => {
           const objectIdToNum = likerId.toString();
           if (objectIdToNum === req.session.user._id) {
@@ -19,7 +19,7 @@ router.get('/', auth.requireUser, (req, res, next) => {
           }
         });
       });
-      res.render('pages/quotes/index', results);
+      res.render('pages/quotes/index', {quotes});
     })
     .catch(next);
 });
